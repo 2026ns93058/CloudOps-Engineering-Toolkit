@@ -1,0 +1,131 @@
+E501 Line too long (90 > 88)
+   --> .harness/run_harness.py:433:89
+    |
+431 |             results[name] = _run_check(name, commands[name], evidence_dir)
+432 |     except EvidencePersistenceError as exc:
+433 |         print(f"Evidence persistence failed; harness cannot pass: {exc}", file=sys.stderr)
+    |                                                                                         ^^
+434 |         return 2
+    |
+
+E501 Line too long (91 > 88)
+   --> .harness/run_harness.py:532:89
+    |
+530 |         "checks": results,
+531 |         "expected_test_inventory": _relative(EXPECTED_TESTS_PATH),
+532 |         "expected_test_count": len(expected_tests) if expected_tests is not None else None,
+    |                                                                                         ^^^
+533 |         "expected_reported_test_count": EXPECTED_REPORTED_TESTS,
+534 |         "pytest_test_identities": (
+    |
+
+E501 Line too long (90 > 88)
+   --> .harness/run_harness.py:554:89
+    |
+552 |         _write_json(evidence_dir / "manifest.json", manifest)
+553 |     except EvidencePersistenceError as exc:
+554 |         print(f"Evidence persistence failed; harness cannot pass: {exc}", file=sys.stderr)
+    |                                                                                         ^^
+555 |         return 2
+    |
+
+E501 Line too long (96 > 88)
+   --> tests/test_harness.py:376:89
+    |
+374 |     def test_nested_or_multiple_outcome_elements_are_rejected(self) -> None:
+375 |         reports = (
+376 |             '<testcase classname="sample" name="case"><wrapper><failure/></wrapper></testcase>',
+    |                                                                                         ^^^^^^^^
+377 |             '<testcase classname="sample" name="case"><wrapper><error/></wrapper></testcase>',
+378 |             '<testcase classname="sample" name="case"><wrapper><skipped/></wrapper></testcase>',
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_harness.py:377:89
+    |
+375 |         reports = (
+376 |             '<testcase classname="sample" name="case"><wrapper><failure/></wrapper></testcase>',
+377 |             '<testcase classname="sample" name="case"><wrapper><error/></wrapper></testcase>',
+    |                                                                                         ^^^^^^
+378 |             '<testcase classname="sample" name="case"><wrapper><skipped/></wrapper></testcase>',
+379 |             '<testcase classname="sample" name="case"><failure/><error/></testcase>',
+    |
+
+E501 Line too long (96 > 88)
+   --> tests/test_harness.py:378:89
+    |
+376 |             '<testcase classname="sample" name="case"><wrapper><failure/></wrapper></testcase>',
+377 |             '<testcase classname="sample" name="case"><wrapper><error/></wrapper></testcase>',
+378 |             '<testcase classname="sample" name="case"><wrapper><skipped/></wrapper></testcase>',
+    |                                                                                         ^^^^^^^^
+379 |             '<testcase classname="sample" name="case"><failure/><error/></testcase>',
+380 |         )
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_harness.py:490:89
+    |
+488 |     def test_missing_or_malformed_junit_report_fails_runner(self) -> None:
+489 |         for report in (None, "<testsuite>"):
+490 |             with self.subTest(report=report), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^
+491 |                 evidence_dir = Path(directory) / "run"
+492 |                 expected = frozenset({"sample::expected"})
+    |
+
+E501 Line too long (91 > 88)
+   --> tests/test_harness.py:572:89
+    |
+570 |         )
+571 |         for outcome, counts, result in cases:
+572 |             with self.subTest(outcome=outcome), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^^^
+573 |                 evidence_dir = Path(directory) / "run"
+574 |                 expected = frozenset({"sample::case"})
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_harness.py:616:89
+    |
+614 |                  ("result", "_write_json"))
+615 |         for target, writer_name in cases:
+616 |             with self.subTest(target=target), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^
+617 |                 evidence_dir = Path(directory) / "run"
+618 |                 original_writer = getattr(RUNNER, writer_name)
+    |
+
+E501 Line too long (90 > 88)
+   --> tests/test_harness.py:637:89
+    |
+635 |                         "run",
+636 |                         return_value=subprocess.CompletedProcess(
+637 |                             ["tool"], 0, stdout="captured output", stderr="captured error"
+    |                                                                                         ^^
+638 |                         ),
+639 |                     ),
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_harness.py:719:89
+    |
+717 |         )
+718 |         for target, writer_name, filename in cases:
+719 |             with self.subTest(target=target), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^
+720 |                 evidence_dir = Path(directory) / "run"
+721 |                 original_writer = getattr(RUNNER, writer_name)
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_harness.py:750:89
+    |
+748 |                     ),
+749 |                     patch.object(
+750 |                         RUNNER, writer_name, side_effect=create_directory_at_write_target
+    |                                                                                         ^
+751 |                     ),
+752 |                     patch.object(RUNNER, "_load_expected_tests",
+    |
+
+Found 12 errors.

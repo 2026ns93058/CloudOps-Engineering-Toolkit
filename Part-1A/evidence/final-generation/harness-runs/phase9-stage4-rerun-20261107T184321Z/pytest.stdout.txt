@@ -1,0 +1,15 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.17, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/pravallithagangula/Projects/CloudOps-Engineering-Toolkit/Part-1A/.harness
+configfile: pytest.ini
+collected 87 items
+
+.harness/test_cli.py .......                                             [  8%]
+.harness/test_domain.py ...............                                  [ 25%]
+.harness/test_harness.py .................................               [ 63%]
+.harness/test_readiness.py .....                                         [ 68%]
+.harness/test_service.py ...................                             [ 90%]
+.harness/test_storage.py ........                                        [100%]
+
+- generated xml file: /Users/pravallithagangula/Projects/CloudOps-Engineering-Toolkit/Part-1A/evidence/final-generation/harness-runs/phase9-stage4-rerun-20261107T184321Z/pytest-junit.xml -
+============================== 87 passed in 1.66s ==============================

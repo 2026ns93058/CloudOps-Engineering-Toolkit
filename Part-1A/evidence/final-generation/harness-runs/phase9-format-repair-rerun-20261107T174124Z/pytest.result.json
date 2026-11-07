@@ -1,0 +1,19 @@
+{
+  "check": "pytest",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+    "-m",
+    "pytest",
+    "-c",
+    ".harness/pytest.ini",
+    "--junitxml=/Users/pravallithagangula/Projects/CloudOps-Engineering-Toolkit/Part-1A/evidence/final-generation/harness-runs/phase9-format-repair-rerun-20261107T174124Z/pytest-junit.xml",
+    "tests"
+  ],
+  "started_at_utc": "2026-11-07T17:41:32.193869+00:00",
+  "completed_at_utc": "2026-11-07T17:41:34.004502+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout_file": "pytest.stdout.txt",
+  "stderr_file": "pytest.stderr.txt",
+  "exception": null
+}

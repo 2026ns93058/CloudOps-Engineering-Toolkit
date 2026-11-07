@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloudops-deployment-readiness-tracker"
+version = "0.1.0"
+description = "Local deployment management and readiness tracker"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+cloudops-tracker = "cloudops_tracker.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

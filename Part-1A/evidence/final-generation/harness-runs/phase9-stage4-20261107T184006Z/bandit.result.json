@@ -1,0 +1,21 @@
+{
+  "check": "bandit",
+  "command": [
+    "/usr/local/bin/python3",
+    "-m",
+    "bandit",
+    "-c",
+    ".harness/bandit.yaml",
+    "-r",
+    "src"
+  ],
+  "started_at_utc": "2026-11-07T18:40:16.372346+00:00",
+  "completed_at_utc": "2026-11-07T18:40:16.646456+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout_file": "bandit.stdout.txt",
+  "stderr_file": "bandit.stderr.txt",
+  "exception": null,
+  "timed_out": false,
+  "timeout_seconds": 300
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "run_id": "phase9-final-20261107T174248Z",
+  "started_at_utc": "2026-11-07T17:42:55.561944+00:00",
+  "completed_at_utc": "2026-11-07T17:42:57.668524+00:00",
+  "project_root": "/Users/pravallithagangula/Projects/CloudOps-Engineering-Toolkit/Part-1A",
+  "evidence_directory": "evidence/final-generation/harness-runs/phase9-final-20261107T174248Z",
+  "checks": {
+    "compile": {
+      "check": "compile",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "tests",
+        ".harness"
+      ],
+      "started_at_utc": "2026-11-07T17:42:55.562114+00:00",
+      "completed_at_utc": "2026-11-07T17:42:55.611777+00:00",
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout_file": "compile.stdout.txt",
+      "stderr_file": "compile.stderr.txt",
+      "exception": null
+    },
+    "ruff": {
+      "check": "ruff",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-m",
+        "ruff",
+        "check",
+        "--config",
+        ".harness/ruff.toml",
+        "src",
+        "tests",
+        ".harness/run_harness.py"
+      ],
+      "started_at_utc": "2026-11-07T17:42:55.612355+00:00",
+      "completed_at_utc": "2026-11-07T17:42:55.679926+00:00",
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout_file": "ruff.stdout.txt",
+      "stderr_file": "ruff.stderr.txt",
+      "exception": null
+    },
+    "bandit": {
+      "check": "bandit",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-m",
+        "bandit",
+        "-c",
+        ".harness/bandit.yaml",
+        "-r",
+        "src"
+      ],
+      "started_at_utc": "2026-11-07T17:42:55.680397+00:00",
+      "completed_at_utc": "2026-11-07T17:42:55.910682+00:00",
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout_file": "bandit.stdout.txt",
+      "stderr_file": "bandit.stderr.txt",
+      "exception": null
+    },
+    "pytest": {
+      "check": "pytest",
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+        "-m",
+        "pytest",
+        "-c",
+        ".harness/pytest.ini",
+        "--junitxml=/Users/pravallithagangula/Projects/CloudOps-Engineering-Toolkit/Part-1A/evidence/final-generation/harness-runs/phase9-final-20261107T174248Z/pytest-junit.xml",
+        "tests"
+      ],
+      "started_at_utc": "2026-11-07T17:42:55.911283+00:00",
+      "completed_at_utc": "2026-11-07T17:42:57.667614+00:00",
+      "exit_code": 0,
+      "status": "PASS",
+      "stdout_file": "pytest.stdout.txt",
+      "stderr_file": "pytest.stderr.txt",
+      "exception": null
+    }
+  },
+  "pytest_metrics": {
+    "collected": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "overall": "PASS",
+  "problems": []
+}

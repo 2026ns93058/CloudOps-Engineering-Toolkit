@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Test and tooling caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local environment and editor files
+.env*
+!.env.example
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.tmp
+*.swp

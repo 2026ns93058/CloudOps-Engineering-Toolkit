@@ -1,0 +1,128 @@
+{
+  "captured_at_utc": "2026-11-07T17:37:49.293024+00:00",
+  "purpose": "Initial-generation source, test, and approved design-input snapshot captured before Phase 9 harness changes.",
+  "source_and_test_file_count": 12,
+  "input_file_count": 8,
+  "files": [
+    {
+      "path": "src/cloudops_tracker/__init__.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/__init__.py",
+      "size_bytes": 60,
+      "sha256": "0d6eb932b9779a6379c3f96b76d43f5a300a43a229922a6e6fe93b86eccef5ff"
+    },
+    {
+      "path": "src/cloudops_tracker/__main__.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/__main__.py",
+      "size_bytes": 95,
+      "sha256": "7e88798476f7f03e09b883c802a7dfaec74ecd2eb03cf925b5f5036c09fd5480"
+    },
+    {
+      "path": "src/cloudops_tracker/cli.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/cli.py",
+      "size_bytes": 11601,
+      "sha256": "d2a08d618734dd7cff431169f5fb15df84759fbd1ffc36acc32b21f5d88732f4"
+    },
+    {
+      "path": "src/cloudops_tracker/domain.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/domain.py",
+      "size_bytes": 12826,
+      "sha256": "3c702b4c4da39bb75e3fd978a469be75ea082cd49828b072ae65e21862d128bd"
+    },
+    {
+      "path": "src/cloudops_tracker/readiness.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/readiness.py",
+      "size_bytes": 1980,
+      "sha256": "b4154bce70cac8c0016a68b7e92b6601ab11720367eb949a5bf76f59ab46a287"
+    },
+    {
+      "path": "src/cloudops_tracker/service.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/service.py",
+      "size_bytes": 20692,
+      "sha256": "c81eed4e012aeb2553bd7065dd885e0303c11ac19a7268b94c5508d794286633"
+    },
+    {
+      "path": "src/cloudops_tracker/storage.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/src/cloudops_tracker/storage.py",
+      "size_bytes": 11187,
+      "sha256": "2ca51faa355073a3a208733eb4ea34b0db0f5865a1070080cd8f32fcf8968270"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/tests/test_cli.py",
+      "size_bytes": 17650,
+      "sha256": "b6c53f995fe8a563d76ce018fb5d47ac625eca452c1d7dec1c09b3e5a4a789c3"
+    },
+    {
+      "path": "tests/test_domain.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/tests/test_domain.py",
+      "size_bytes": 13011,
+      "sha256": "3d030206bbbbfab20f651cd32f0db3773deb3725b1e3f5cd522b99939bca25fc"
+    },
+    {
+      "path": "tests/test_readiness.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/tests/test_readiness.py",
+      "size_bytes": 4887,
+      "sha256": "4a35db9e5e159b554b7097a8002b4709620157b32b770d4023ee7694742e01a2"
+    },
+    {
+      "path": "tests/test_service.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/tests/test_service.py",
+      "size_bytes": 42108,
+      "sha256": "99ea8dddf87c4ad64777526124f94733318d483aa2003f0cc355cce921e9e1b8"
+    },
+    {
+      "path": "tests/test_storage.py",
+      "snapshot_path": "evidence/initial-generation/snapshot/tests/test_storage.py",
+      "size_bytes": 10238,
+      "sha256": "0f00f0e2a9cd478a6337d5f15d88c1638b10321b294c0cc3266164d1eb561795"
+    },
+    {
+      "path": "README.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/README.md",
+      "size_bytes": 3081,
+      "sha256": "463561fcabf21d0ff0bae652ebdab1c1053aace36331fe0ecfb4c5a82f8b55ad"
+    },
+    {
+      "path": "pyproject.toml",
+      "snapshot_path": "evidence/initial-generation/snapshot/pyproject.toml",
+      "size_bytes": 433,
+      "sha256": "7d6476a7e31bfbad57547f7862b8d2cc57243baa26f3e1639465ef5a0c27af66"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/spec.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/specs/001-deployment-readiness-tracker/spec.md",
+      "size_bytes": 24799,
+      "sha256": "9342a05864b641a60d180d07dff617e2f714ad5e29a0c72cf5a2cac00f59a40a"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/plan.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/specs/001-deployment-readiness-tracker/plan.md",
+      "size_bytes": 6202,
+      "sha256": "75c21e42debd810d72e1ad6e1cc8f4f703bf28779072146674fad9b12c4525b7"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/tasks.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/specs/001-deployment-readiness-tracker/tasks.md",
+      "size_bytes": 26470,
+      "sha256": "40b338ac5c679a740f45e3cc9ed5204739a19846e8beaac309121242f4bf94ed"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/data-model.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/specs/001-deployment-readiness-tracker/data-model.md",
+      "size_bytes": 6379,
+      "sha256": "7bd8a89172840325f64d2252a1cbb2aa9675dfdd321210c4340273d34fa504fb"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/contracts/cli.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/specs/001-deployment-readiness-tracker/contracts/cli.md",
+      "size_bytes": 5294,
+      "sha256": "b4dba3a65ca9fc02cb1ceb00ff1cd8a9d4ac03a59780904a80384e49429db6cb"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "snapshot_path": "evidence/initial-generation/snapshot/.specify/memory/constitution.md",
+      "size_bytes": 6796,
+      "sha256": "d8d40bc1960b4807c84ce7952a897d629abc64f3dacfa8ee050076e1760d9359"
+    }
+  ]
+}

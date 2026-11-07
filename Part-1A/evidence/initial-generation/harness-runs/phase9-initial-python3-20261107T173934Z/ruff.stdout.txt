@@ -1,0 +1,912 @@
+E501 Line too long (89 > 88)
+  --> src/cloudops_tracker/cli.py:85:89
+   |
+83 |     readiness = actions.add_parser("readiness", help="manage readiness checks")
+84 |     readiness_actions = readiness.add_subparsers(dest="readiness_action", required=True)
+85 |     set_readiness = readiness_actions.add_parser("set", help="record a readiness result")
+   |                                                                                         ^
+86 |     set_readiness.add_argument("deployment_id")
+87 |     set_readiness.add_argument("--check", required=True, choices=MANDATORY_CHECK_NAMES)
+   |
+
+E501 Line too long (91 > 88)
+   --> src/cloudops_tracker/cli.py:212:89
+    |
+210 |                 f"{event.occurred_at.isoformat()} {event.event_type.value} "
+211 |                 f"actor={event.actor or '-'} reason={event.reason or '-'} "
+212 |                 f"details={json.dumps(event.details, sort_keys=True, ensure_ascii=False)}",
+    |                                                                                         ^^^
+213 |                 file=sys.stdout,
+214 |             )
+    |
+
+E501 Line too long (90 > 88)
+   --> src/cloudops_tracker/domain.py:297:89
+    |
+295 |             or self.schema_version != 1
+296 |         ):
+297 |             raise ValueError(f"Unsupported state schema version: {self.schema_version!r}")
+    |                                                                                         ^^
+298 |         if not isinstance(self.deployments, list) or not isinstance(
+299 |             self.audit_events, list
+    |
+
+E501 Line too long (93 > 88)
+   --> src/cloudops_tracker/domain.py:328:89
+    |
+326 |     if target_status not in allowed:
+327 |         raise ValueError(
+328 |             f"Transition from {current_status.value} to {target_status.value} is not allowed"
+    |                                                                                         ^^^^^
+329 |         )
+    |
+
+E501 Line too long (94 > 88)
+  --> src/cloudops_tracker/readiness.py:42:89
+   |
+40 |         )
+41 |     except (TypeError, ValueError) as exc:
+42 |         raise ValueError(f"Invalid result for readiness check {check_name!r}: {exc}") from exc
+   |                                                                                         ^^^^^^
+
+E501 Line too long (97 > 88)
+  --> src/cloudops_tracker/service.py:24:89
+   |
+22 |     validate_transition,
+23 | )
+24 | from cloudops_tracker.readiness import ReadinessEligibility, evaluate_check, evaluate_eligibility
+   |                                                                                         ^^^^^^^^^
+25 | from cloudops_tracker.storage import JsonStore
+   |
+
+E501 Line too long (98 > 88)
+   --> src/cloudops_tracker/service.py:125:89
+    |
+123 |         for _ in range(10):
+124 |             candidate = self._id_generator()
+125 |             if isinstance(candidate, str) and candidate.strip() and candidate not in existing_ids:
+    |                                                                                         ^^^^^^^^^^
+126 |                 return candidate
+127 |         raise ServiceError("Could not generate a unique deployment ID after 10 attempts")
+    |
+
+E501 Line too long (89 > 88)
+   --> src/cloudops_tracker/service.py:127:89
+    |
+125 |             if isinstance(candidate, str) and candidate.strip() and candidate not in existing_ids:
+126 |                 return candidate
+127 |         raise ServiceError("Could not generate a unique deployment ID after 10 attempts")
+    |                                                                                         ^
+128 |
+129 |     @staticmethod
+    |
+
+E501 Line too long (89 > 88)
+   --> src/cloudops_tracker/service.py:240:89
+    |
+238 |             ]
+239 |         if sort_by_priority:
+240 |             deployments.sort(key=lambda deployment: _PRIORITY_ORDER[deployment.priority])
+    |                                                                                         ^
+241 |         return deployments
+    |
+
+E501 Line too long (89 > 88)
+   --> src/cloudops_tracker/service.py:268:89
+    |
+266 |         if unknown_fields:
+267 |             raise ServiceError(
+268 |                 f"Metadata fields cannot be updated: {', '.join(sorted(unknown_fields))}"
+    |                                                                                         ^
+269 |             )
+    |
+
+E501 Line too long (89 > 88)
+  --> src/cloudops_tracker/storage.py:68:89
+   |
+66 |         raise ValueError(f"{name} is missing fields: {', '.join(sorted(missing))}")
+67 |     if unknown:
+68 |         raise ValueError(f"{name} contains unknown fields: {', '.join(sorted(unknown))}")
+   |                                                                                         ^
+
+E501 Line too long (97 > 88)
+   --> src/cloudops_tracker/storage.py:277:89
+    |
+275 |             parsed = json.loads(raw)
+276 |             return _state_from_json(parsed)
+277 |         except (OSError, UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError) as exc:
+    |                                                                                         ^^^^^^^^^
+278 |             raise StorageError(f"Invalid state file {self.path}: {exc}") from exc
+    |
+
+E501 Line too long (91 > 88)
+   --> src/cloudops_tracker/storage.py:325:89
+    |
+323 |                     f"temporary file cleanup also failed: {cleanup_error}"
+324 |                 ) from exc
+325 |             raise StorageError(f"Could not persist state file {self.path}: {exc}") from exc
+    |                                                                                         ^^^
+
+E501 Line too long (91 > 88)
+   --> tests/test_cli.py:126:89
+    |
+124 |         deployment_id = deployment_id_match.group(1)
+125 |
+126 |         self.create_deployment_id(application="priority-api", version="1.0", priority="P1")
+    |                                                                                         ^^^
+127 |         view_args = ("view", deployment_id)
+128 |         cases.append(("C02", view_args, 0, "stdout", "Deployment ID", ""))
+    |
+
+E501 Line too long (115 > 88)
+   --> tests/test_cli.py:137:89
+    |
+135 |         cases.append(("C05", sort_args, 0, "stdout", "P1", "P2"))
+136 |
+137 |         update_args = ("update", deployment_id, "--requester", "release-operator", "--reason", "Correct requester")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+138 |         cases.append(("C06", update_args, 0, "stdout", "updated", ""))
+139 |         readiness_show_args = ("readiness", "show", deployment_id)
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_cli.py:164:89
+    |
+162 |             "evidence://team-approval",
+163 |         )
+164 |         cases.append(("C09", human_approval_args, 0, "stdout", "human-approval", "PASS"))
+    |                                                                                         ^
+165 |         accept_args = ("approval", deployment_id, "--decision", "ACCEPT", "--actor", "reviewer", "--reason", "Reviewed evidence")
+166 |         cases.append(("C10", accept_args, 0, "stdout", "ACCEPT", "recorded"))
+    |
+
+E501 Line too long (129 > 88)
+   --> tests/test_cli.py:165:89
+    |
+163 |         )
+164 |         cases.append(("C09", human_approval_args, 0, "stdout", "human-approval", "PASS"))
+165 |         accept_args = ("approval", deployment_id, "--decision", "ACCEPT", "--actor", "reviewer", "--reason", "Reviewed evidence")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+166 |         cases.append(("C10", accept_args, 0, "stdout", "ACCEPT", "recorded"))
+    |
+
+E501 Line too long (108 > 88)
+   --> tests/test_cli.py:168:89
+    |
+166 |         cases.append(("C10", accept_args, 0, "stdout", "ACCEPT", "recorded"))
+167 |
+168 |         invalid_environment = self.create_args(application="bad-environment", environment="Production-Blue")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^
+169 |         cases.append(("C11", invalid_environment, 2, "stderr", "Development", "Production"))
+170 |         invalid_priority = self.create_args(application="bad-priority", priority="P0")
+    |
+
+E501 Line too long (92 > 88)
+   --> tests/test_cli.py:169:89
+    |
+168 |         invalid_environment = self.create_args(application="bad-environment", environment="Production-Blue")
+169 |         cases.append(("C11", invalid_environment, 2, "stderr", "Development", "Production"))
+    |                                                                                         ^^^^
+170 |         invalid_priority = self.create_args(application="bad-priority", priority="P0")
+171 |         cases.append(("C12", invalid_priority, 2, "stderr", "P1", "P4"))
+    |
+
+E501 Line too long (115 > 88)
+   --> tests/test_cli.py:177:89
+    |
+175 |         duplicate = self.create_args()
+176 |         cases.append(("C14", duplicate, 1, "stderr", "duplicate", ""))
+177 |         invalid_transition = ("status", deployment_id, "--to", "DEPLOYED", "--reason", "Invalid direct deployment")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+178 |         cases.append(("C15", invalid_transition, 1, "stderr", "transition", ""))
+179 |         missing_evidence = (
+    |
+
+E501 Line too long (106 > 88)
+   --> tests/test_cli.py:189:89
+    |
+187 |         )
+188 |         cases.append(("C16", missing_evidence, 1, "stderr", "evidence", ""))
+189 |         begin_validation = ("status", deployment_id, "--to", "VALIDATING", "--reason", "Begin validation")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^
+190 |         self.assertEqual(self.invoke(*begin_validation)[0], 0)
+191 |         incomplete_approval = ("status", deployment_id, "--to", "APPROVED", "--reason", "Attempt approval")
+    |
+
+E501 Line too long (107 > 88)
+   --> tests/test_cli.py:191:89
+    |
+189 |         begin_validation = ("status", deployment_id, "--to", "VALIDATING", "--reason", "Begin validation")
+190 |         self.assertEqual(self.invoke(*begin_validation)[0], 0)
+191 |         incomplete_approval = ("status", deployment_id, "--to", "APPROVED", "--reason", "Attempt approval")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^
+192 |         cases.append(("C17", incomplete_approval, 1, "stderr", "readiness", ""))
+    |
+
+E501 Line too long (127 > 88)
+   --> tests/test_cli.py:207:89
+    |
+205 |         missing_reason = ("update", deployment_id, "--requester", "someone")
+206 |         cases.append(("C19", missing_reason, 2, "stderr", "reason", "required"))
+207 |         reject_args = ("approval", deployment_id, "--decision", "REJECT", "--actor", "reviewer", "--reason", "Risk identified")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+208 |         cases.append(("C20", reject_args, 0, "stdout", "REJECT", "recorded"))
+    |
+
+E501 Line too long (110 > 88)
+   --> tests/test_cli.py:220:89
+    |
+218 |                     actual_code, actual_stdout, actual_stderr = self.invoke(*arguments)
+219 |                 actual_stream = actual_stdout if stream == "stdout" else actual_stderr
+220 |                 passed_case = actual_code == expected_code and marker_a.casefold() in actual_stream.casefold()
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^
+221 |                 if marker_b:
+222 |                     passed_case = passed_case and marker_b.casefold() in actual_stream.casefold()
+    |
+
+E501 Line too long (97 > 88)
+   --> tests/test_cli.py:222:89
+    |
+220 |                 passed_case = actual_code == expected_code and marker_a.casefold() in actual_stream.casefold()
+221 |                 if marker_b:
+222 |                     passed_case = passed_case and marker_b.casefold() in actual_stream.casefold()
+    |                                                                                         ^^^^^^^^^
+223 |                 if case_id == "C05":
+224 |                     p1 = actual_stdout.find("P1")
+    |
+
+E501 Line too long (108 > 88)
+   --> tests/test_cli.py:235:89
+    |
+233 |                 if not passed_case:
+234 |                     failures.append(
+235 |                         f"{case_id}: exit={actual_code}, stdout={actual_stdout!r}, stderr={actual_stderr!r}"
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^
+236 |                     )
+237 |                 passed += int(passed_case)
+    |
+
+E501 Line too long (93 > 88)
+   --> tests/test_cli.py:244:89
+    |
+243 | class CliValidationTests(CliTestCase):
+244 |     def test_all_documented_commands_accept_store_selection_and_service_inputs(self) -> None:
+    |                                                                                         ^^^^^
+245 |         deployment_id = self.create_deployment_id()
+246 |         commands = (
+    |
+
+E501 Line too long (103 > 88)
+   --> tests/test_cli.py:249:89
+    |
+247 |             ("view", deployment_id),
+248 |             ("list", "--environment", "Staging", "--sort", "priority"),
+249 |             ("update", deployment_id, "--application", "inventory-api", "--reason", "Metadata reason"),
+    |                                                                                         ^^^^^^^^^^^^^^^
+250 |             ("readiness", "show", deployment_id),
+251 |             (
+    |
+
+E501 Line too long (111 > 88)
+   --> tests/test_cli.py:262:89
+    |
+260 |                 "Tests failed",
+261 |             ),
+262 |             ("approval", deployment_id, "--decision", "ACCEPT", "--actor", "reviewer", "--reason", "Decision"),
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^
+263 |             (
+264 |                 "status",
+    |
+
+E501 Line too long (103 > 88)
+   --> tests/test_cli.py:277:89
+    |
+275 |                 self.assertEqual(code, 0, stderr)
+276 |
+277 |     def test_approved_status_requires_final_accept_separate_from_human_approval_evidence(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^^^
+278 |         deployment_id = self.create_deployment_id()
+279 |         for check_name in MANDATORY_CHECK_NAMES:
+    |
+
+E501 Line too long (96 > 88)
+   --> tests/test_cli.py:396:89
+    |
+394 |         )
+395 |
+396 |         failure_code, failure_stdout, failure_stderr = self.invoke("view", failed.deployment_id)
+    |                                                                                         ^^^^^^^^
+397 |         rollback_code, rollback_stdout, rollback_stderr = self.invoke("view", rolled_back.deployment_id)
+398 |         self.assertEqual(failure_code, 0, failure_stderr)
+    |
+
+E501 Line too long (104 > 88)
+   --> tests/test_cli.py:397:89
+    |
+396 |         failure_code, failure_stdout, failure_stderr = self.invoke("view", failed.deployment_id)
+397 |         rollback_code, rollback_stdout, rollback_stderr = self.invoke("view", rolled_back.deployment_id)
+    |                                                                                         ^^^^^^^^^^^^^^^^
+398 |         self.assertEqual(failure_code, 0, failure_stderr)
+399 |         self.assertEqual(rollback_code, 0, rollback_stderr)
+    |
+
+E501 Line too long (92 > 88)
+   --> tests/test_cli.py:400:89
+    |
+398 |         self.assertEqual(failure_code, 0, failure_stderr)
+399 |         self.assertEqual(rollback_code, 0, rollback_stderr)
+400 |         self.assertIn("Exact failure detail: readiness endpoint timed out.", failure_stdout)
+    |                                                                                         ^^^^
+401 |         self.assertIn("Exact rollback detail: restored version 0.9.9.", rollback_stdout)
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_cli.py:442:89
+    |
+441 |     def test_corrupt_json_is_not_overwritten(self) -> None:
+442 |         invalid_bytes = b'{"schema_version": 1, "deployments": "invalid", "audit_events": []}'
+    |                                                                                         ^^^^^^
+443 |         self.store_path.write_bytes(invalid_bytes)
+444 |         code, _, stderr = self.invoke("list")
+    |
+
+E501 Line too long (92 > 88)
+  --> tests/test_domain.py:37:89
+   |
+37 | def make_checks(status: CheckStatus = CheckStatus.NOT_CHECKED) -> dict[str, ReadinessCheck]:
+   |                                                                                         ^^^^
+38 |     return {
+39 |         name: ReadinessCheck(
+   |
+
+E501 Line too long (95 > 88)
+  --> tests/test_domain.py:92:89
+   |
+90 |             },
+91 |         )
+92 |         self.assertEqual({item.value for item in CheckStatus}, {"PASS", "FAIL", "NOT_CHECKED"})
+   |                                                                                         ^^^^^^^
+93 |         self.assertEqual({item.value for item in DecisionType}, {"ACCEPT", "REJECT"})
+   |
+
+E501 Line too long (95 > 88)
+   --> tests/test_domain.py:114:89
+    |
+112 |                     make_deployment(**{field: "  "})
+113 |
+114 |     def test_environment_priority_and_status_are_restricted_to_documented_values(self) -> None:
+    |                                                                                         ^^^^^^^
+115 |         invalid_values = (
+116 |             ("environment", "Production-Blue"),
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_domain.py:166:89
+    |
+164 |                     )
+165 |
+166 |     def test_human_decision_requires_a_supported_decision_actor_and_reason(self) -> None:
+    |                                                                                         ^
+167 |         with self.assertRaises((TypeError, ValueError)):
+168 |             HumanApprovalDecision(
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_domain.py:197:89
+    |
+195 | class LifecycleTransitionTests(unittest.TestCase):
+196 |     ALLOWED = {
+197 |         DeploymentStatus.DRAFT: {DeploymentStatus.VALIDATING, DeploymentStatus.REJECTED},
+    |                                                                                         ^
+198 |         DeploymentStatus.VALIDATING: {
+199 |             DeploymentStatus.BLOCKED,
+    |
+
+E501 Line too long (91 > 88)
+   --> tests/test_domain.py:204:89
+    |
+202 |             DeploymentStatus.REJECTED,
+203 |         },
+204 |         DeploymentStatus.BLOCKED: {DeploymentStatus.VALIDATING, DeploymentStatus.REJECTED},
+    |                                                                                         ^^^
+205 |         DeploymentStatus.APPROVED: {
+206 |             DeploymentStatus.DEPLOYING,
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_domain.py:292:89
+    |
+290 |                     AuditEvent(**fields)  # type: ignore[arg-type]
+291 |
+292 |     def test_state_document_rejects_duplicate_ids_and_dangling_audit_references(self) -> None:
+    |                                                                                         ^^^^^^
+293 |         deployment = make_deployment()
+294 |         duplicate = make_deployment()
+    |
+
+E501 Line too long (94 > 88)
+  --> tests/test_harness.py:28:89
+   |
+27 | class HarnessAggregationTests(unittest.TestCase):
+28 |     def test_all_required_successful_checks_and_nonempty_pytest_collection_pass(self) -> None:
+   |                                                                                         ^^^^^^
+29 |         passed, problems = RUNNER.aggregate_results(
+30 |             passing_results(),
+   |
+
+E501 Line too long (93 > 88)
+  --> tests/test_harness.py:47:89
+   |
+46 |         self.assertFalse(passed)
+47 |         self.assertTrue(any("Missing mandatory checks: bandit" in item for item in problems))
+   |                                                                                         ^^^^^
+48 |
+49 |     def test_nonzero_command_exit_fails_closed(self) -> None:
+   |
+
+E501 Line too long (90 > 88)
+  --> tests/test_readiness.py:16:89
+   |
+15 | class ReadinessCheckTests(unittest.TestCase):
+16 |     def test_each_of_the_eight_fixed_checks_supports_each_documented_result(self) -> None:
+   |                                                                                         ^^
+17 |         for check_name in MANDATORY_CHECK_NAMES:
+18 |             for status in CheckStatus:
+   |
+
+E501 Line too long (97 > 88)
+  --> tests/test_readiness.py:23:89
+   |
+21 |                         check_name,
+22 |                         status=status,
+23 |                         evidence="evidence://validation" if status is CheckStatus.PASS else None,
+   |                                                                                         ^^^^^^^^^
+24 |                         reason="Validation result" if status is not CheckStatus.PASS else None,
+25 |                         updated_at=NOW,
+   |
+
+E501 Line too long (95 > 88)
+  --> tests/test_readiness.py:24:89
+   |
+22 |                         status=status,
+23 |                         evidence="evidence://validation" if status is CheckStatus.PASS else None,
+24 |                         reason="Validation result" if status is not CheckStatus.PASS else None,
+   |                                                                                         ^^^^^^^
+25 |                         updated_at=NOW,
+26 |                     )
+   |
+
+E501 Line too long (90 > 88)
+  --> tests/test_readiness.py:31:89
+   |
+29 |                     self.assertEqual(result.updated_at, NOW)
+30 |
+31 |     def test_pass_requires_evidence_and_fail_or_not_checked_requires_reason(self) -> None:
+   |                                                                                         ^^
+32 |         invalid_results = (
+33 |             *(
+   |
+
+E501 Line too long (99 > 88)
+  --> tests/test_service.py:59:89
+   |
+57 |         return self.service.create_deployment(**fields)
+58 |
+59 |     def test_creation_assigns_unique_id_utc_timestamps_draft_and_all_unchecked_gates(self) -> None:
+   |                                                                                         ^^^^^^^^^^^
+60 |         first = self.create_request()
+61 |         second = self.create_request(
+   |
+
+E501 Line too long (89 > 88)
+   --> tests/test_service.py:98:89
+    |
+ 96 |                     self.assertEqual(deployment.priority.value, priority)
+ 97 |
+ 98 |     def test_invalid_required_fields_environment_and_priority_are_rejected(self) -> None:
+    |                                                                                         ^
+ 99 |         invalid_requests = (
+100 |             {"application_name": "  "},
+    |
+
+E501 Line too long (113 > 88)
+   --> tests/test_service.py:114:89
+    |
+112 |         self.assertEqual(self.store.load().audit_events, [])
+113 |
+114 |     def test_duplicate_identity_is_case_insensitive_for_application_and_case_sensitive_for_version(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^
+115 |         self.create_request(application_name=" Inventory-API ", application_version="2.4.1")
+    |
+
+E501 Line too long (92 > 88)
+   --> tests/test_service.py:115:89
+    |
+114 |     def test_duplicate_identity_is_case_insensitive_for_application_and_case_sensitive_for_version(self) -> None:
+115 |         self.create_request(application_name=" Inventory-API ", application_version="2.4.1")
+    |                                                                                         ^^^^
+116 |
+117 |         with self.assertRaisesRegex(ValueError, "duplicate"):
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:118:89
+    |
+117 |         with self.assertRaisesRegex(ValueError, "duplicate"):
+118 |             self.create_request(application_name="inventory-api", application_version="2.4.1")
+    |                                                                                         ^^^^^^
+119 |
+120 |         case_distinct_version = self.create_request(
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_service.py:136:89
+    |
+134 |         )
+135 |         for status in active_statuses:
+136 |             with self.subTest(status=status), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^
+137 |                 store = JsonStore(Path(directory) / "deployments.json")
+138 |                 service = DeploymentService(
+    |
+
+E501 Line too long (104 > 88)
+   --> tests/test_service.py:193:89
+    |
+191 |         self.assertEqual(len(listed), 4)
+192 |         self.assertEqual(
+193 |             [item.priority.value for item in restarted_service.list_deployments(sort_by_priority=True)],
+    |                                                                                         ^^^^^^^^^^^^^^^^
+194 |             ["P1", "P2", "P3", "P4"],
+195 |         )
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_service.py:203:89
+    |
+201 |             restarted_service.get_deployment("missing-id")
+202 |
+203 |     def test_inactive_statuses_do_not_block_creation_for_the_same_identity(self) -> None:
+    |                                                                                         ^
+204 |         inactive_statuses = (
+205 |             DeploymentStatus.FAILED,
+    |
+
+E501 Line too long (89 > 88)
+   --> tests/test_service.py:211:89
+    |
+209 |         )
+210 |         for status in inactive_statuses:
+211 |             with self.subTest(status=status), tempfile.TemporaryDirectory() as directory:
+    |                                                                                         ^
+212 |                 store = JsonStore(Path(directory) / "deployments.json")
+213 |                 service = DeploymentService(
+    |
+
+E501 Line too long (99 > 88)
+   --> tests/test_service.py:232:89
+    |
+230 |                     details["rollback_details"] = "Rollback for duplicate fixture"
+231 |                 updated = replace(original, status=status, **details)
+232 |                 store.save(StateDocument(schema_version=1, deployments=[updated], audit_events=[]))
+    |                                                                                         ^^^^^^^^^^^
+233 |                 replacement_service = DeploymentService(
+234 |                     store,
+    |
+
+E501 Line too long (103 > 88)
+   --> tests/test_service.py:249:89
+    |
+247 |                 self.assertEqual(replacement.status, DeploymentStatus.DRAFT)
+248 |
+249 |     def test_metadata_updates_record_reason_old_new_values_and_preserve_immutable_fields(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^^^
+250 |         original = self.create_request()
+251 |         updated = self.service.update_metadata(
+    |
+
+E501 Line too long (90 > 88)
+   --> tests/test_service.py:267:89
+    |
+265 |         self.assertEqual(event.reason, "Application rename approved")
+266 |         self.assertEqual(event.actor, "operator")
+267 |         self.assertEqual(event.details["old_values"]["application_name"], "inventory-api")
+    |                                                                                         ^^
+268 |         self.assertEqual(event.details["new_values"]["application_name"], "inventory-api-v2")
+    |
+
+E501 Line too long (93 > 88)
+   --> tests/test_service.py:268:89
+    |
+266 |         self.assertEqual(event.actor, "operator")
+267 |         self.assertEqual(event.details["old_values"]["application_name"], "inventory-api")
+268 |         self.assertEqual(event.details["new_values"]["application_name"], "inventory-api-v2")
+    |                                                                                         ^^^^^
+269 |
+270 |         for immutable_update in (
+    |
+
+E501 Line too long (97 > 88)
+   --> tests/test_service.py:287:89
+    |
+285 |         self.assertEqual(persisted.created_at, original.created_at)
+286 |
+287 |     def test_metadata_update_rejects_duplicate_and_invalid_values_without_mutation(self) -> None:
+    |                                                                                         ^^^^^^^^^
+288 |         first = self.create_request()
+289 |         second = self.create_request(
+    |
+
+E501 Line too long (101 > 88)
+   --> tests/test_service.py:424:89
+    |
+422 |         )
+423 |
+424 |     def test_approved_gate_rejects_each_missing_failed_unchecked_or_evidenceless_check(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^
+425 |         self.assertTrue(MANDATORY_CHECK_NAMES)
+426 |         for check_name in MANDATORY_CHECK_NAMES:
+    |
+
+E501 Line too long (97 > 88)
+   --> tests/test_service.py:492:89
+    |
+490 |             )
+491 |
+492 |     def test_approved_gate_requires_separate_accept_decision_after_all_checks_pass(self) -> None:
+    |                                                                                         ^^^^^^^^^
+493 |         deployment = self.create_request()
+494 |         self.set_all_checks_passing(deployment.deployment_id)
+    |
+
+E501 Line too long (103 > 88)
+   --> tests/test_service.py:543:89
+    |
+541 |             )
+542 |
+543 |     def test_approved_gate_blocks_each_missing_result_and_rejects_each_evidenceless_pass(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^^^
+544 |         for missing_name in MANDATORY_CHECK_NAMES:
+545 |             with self.subTest(missing_name=missing_name):
+    |
+
+E501 Line too long (102 > 88)
+   --> tests/test_service.py:619:89
+    |
+617 |                     )
+618 |
+619 |     def test_deploying_gate_rejects_each_missing_failed_unchecked_or_evidenceless_check(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^^^
+620 |         for check_name in MANDATORY_CHECK_NAMES:
+621 |             for status in (CheckStatus.FAIL, CheckStatus.NOT_CHECKED):
+    |
+
+E501 Line too long (100 > 88)
+   --> tests/test_service.py:665:89
+    |
+663 |         )
+664 |
+665 |     def test_final_reject_matches_allowed_and_disallowed_transitions_for_all_statuses(self) -> None:
+    |                                                                                         ^^^^^^^^^^^^
+666 |         allowed = {
+667 |             DeploymentStatus.DRAFT,
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:709:89
+    |
+707 |                     ]
+708 |                     self.assertEqual(rejected.status, DeploymentStatus.REJECTED)
+709 |                     self.assertEqual(rejected.approval_decision.decision, DecisionType.REJECT)
+    |                                                                                         ^^^^^^
+710 |                     self.assertEqual(len(decision_events), 1)
+711 |                     self.assertEqual(decision_events[0].reason, "Final rejection")
+    |
+
+E501 Line too long (97 > 88)
+   --> tests/test_service.py:739:89
+    |
+737 |                     self.assertEqual(after_events, before_events)
+738 |                     self.assertFalse(
+739 |                         any(event.event_type.value == "human_decision" for event in after_events)
+    |                                                                                         ^^^^^^^^^
+740 |                     )
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:782:89
+    |
+780 |     def events_for(self, deployment_id: str):
+781 |         state = self.store.load()
+782 |         return [event for event in state.audit_events if event.deployment_id == deployment_id]
+    |                                                                                         ^^^^^^
+783 |
+784 |     def assert_utc_timestamp(self, value: datetime) -> None:
+    |
+
+E501 Line too long (98 > 88)
+   --> tests/test_service.py:788:89
+    |
+786 |         self.assertEqual(value.utcoffset(), timezone.utc.utcoffset(value))
+787 |
+788 |     def test_creation_metadata_readiness_and_status_changes_create_auditable_events(self) -> None:
+    |                                                                                         ^^^^^^^^^^
+789 |         deployment_id = self.create_request()
+790 |         created_events = self.events_for(deployment_id)
+    |
+
+E501 Line too long (95 > 88)
+   --> tests/test_service.py:839:89
+    |
+837 |         )
+838 |
+839 |     def test_accept_decision_is_separate_audited_evidence_before_approved_status(self) -> None:
+    |                                                                                         ^^^^^^^
+840 |         deployment_id = self.create_request()
+841 |         self.service.record_decision(
+    |
+
+E501 Line too long (105 > 88)
+   --> tests/test_service.py:850:89
+    |
+848 |         state = self.store.load()
+849 |         deployment = state.deployments[0]
+850 |         decision_events = [event for event in state.audit_events if event.event_type == "human_decision"]
+    |                                                                                         ^^^^^^^^^^^^^^^^^
+851 |         self.assertEqual(deployment.status, DeploymentStatus.DRAFT)
+852 |         self.assertEqual(deployment.approval_decision.decision, "ACCEPT")
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:858:89
+    |
+856 |         self.assert_utc_timestamp(decision_events[0].occurred_at)
+857 |
+858 |     def test_allowed_and_disallowed_reject_decisions_have_atomic_audit_behavior(self) -> None:
+    |                                                                                         ^^^^^^
+859 |         allowed_id = self.create_request()
+860 |         self.service.record_decision(
+    |
+
+E501 Line too long (90 > 88)
+   --> tests/test_service.py:868:89
+    |
+866 |         allowed_state = self.store.load()
+867 |         allowed_deployment = next(
+868 |             item for item in allowed_state.deployments if item.deployment_id == allowed_id
+    |                                                                                         ^^
+869 |         )
+870 |         self.assertEqual(allowed_deployment.status, DeploymentStatus.REJECTED)
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:873:89
+    |
+871 |         self.assertEqual(allowed_deployment.approval_decision.decision, "REJECT")
+872 |         self.assertEqual(
+873 |             sum(event.event_type == "human_decision" for event in allowed_state.audit_events),
+    |                                                                                         ^^^^^^
+874 |             1,
+875 |         )
+    |
+
+E501 Line too long (92 > 88)
+   --> tests/test_service.py:922:89
+    |
+920 |         before_state = self.store.load()
+921 |         before_deployment = next(
+922 |             item for item in before_state.deployments if item.deployment_id == disallowed_id
+    |                                                                                         ^^^^
+923 |         )
+924 |         before_events = [
+    |
+
+E501 Line too long (91 > 88)
+   --> tests/test_service.py:940:89
+    |
+938 |         after_state = self.store.load()
+939 |         after_deployment = next(
+940 |             item for item in after_state.deployments if item.deployment_id == disallowed_id
+    |                                                                                         ^^^
+941 |         )
+942 |         after_events = [
+    |
+
+E501 Line too long (97 > 88)
+   --> tests/test_service.py:949:89
+    |
+947 |         self.assertEqual(after_deployment, before_deployment)
+948 |         self.assertEqual(after_deployment.status, DeploymentStatus.DEPLOYING)
+949 |         self.assertEqual(after_deployment.approval_decision, before_deployment.approval_decision)
+    |                                                                                         ^^^^^^^^^
+950 |         self.assertEqual(after_events, before_events)
+951 |         self.assertEqual(
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_service.py:956:89
+    |
+954 |         )
+955 |
+956 |     def test_failure_and_rollback_record_details_reasons_and_timestamped_events(self) -> None:
+    |                                                                                         ^^^^^^
+957 |         deployment_id = self.create_request()
+958 |         self.service.transition_status(
+    |
+
+E501 Line too long (94 > 88)
+   --> tests/test_storage.py:150:89
+    |
+149 | class PersistenceRoundTripTests(unittest.TestCase):
+150 |     def test_save_and_reload_preserves_records_checks_decisions_and_audit_order(self) -> None:
+    |                                                                                         ^^^^^^
+151 |         with tempfile.TemporaryDirectory() as directory:
+152 |             store = JsonStore(Path(directory) / "deployments.json")
+    |
+
+E501 Line too long (109 > 88)
+   --> tests/test_storage.py:167:89
+    |
+165 |                 ["event-001", "event-002", "event-003", "event-004", "event-005"],
+166 |             )
+167 |             loaded_failed = next(item for item in reloaded.deployments if item.deployment_id == "dep-failed")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^
+168 |             loaded_rollback = next(item for item in reloaded.deployments if item.deployment_id == "dep-rolled-back")
+169 |             self.assertEqual(loaded_failed.failure_details, "Health check timed out")
+    |
+
+E501 Line too long (116 > 88)
+   --> tests/test_storage.py:168:89
+    |
+166 |             )
+167 |             loaded_failed = next(item for item in reloaded.deployments if item.deployment_id == "dep-failed")
+168 |             loaded_rollback = next(item for item in reloaded.deployments if item.deployment_id == "dep-rolled-back")
+    |                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+169 |             self.assertEqual(loaded_failed.failure_details, "Health check timed out")
+170 |             self.assertEqual(loaded_rollback.rollback_details, "Restored version 2.4.0")
+    |
+
+E501 Line too long (99 > 88)
+   --> tests/test_storage.py:176:89
+    |
+174 |             )
+175 |             self.assertEqual(loaded_failed.approval_decision.actor, "reviewer")
+176 |             self.assertEqual(loaded_failed.approval_decision.reason, "Readiness evidence reviewed")
+    |                                                                                         ^^^^^^^^^^^
+177 |             self.assertEqual(
+178 |                 reloaded.audit_events[1].details["evidence_refs"],
+    |
+
+E501 Line too long (90 > 88)
+   --> tests/test_storage.py:182:89
+    |
+180 |             )
+181 |
+182 |     def test_pre_shutdown_and_post_restart_deployment_id_sets_match_exactly(self) -> None:
+    |                                                                                         ^^
+183 |         with tempfile.TemporaryDirectory() as directory:
+184 |             store = JsonStore(Path(directory) / "deployments.json")
+    |
+
+E501 Line too long (102 > 88)
+   --> tests/test_storage.py:220:89
+    |
+218 |         with tempfile.TemporaryDirectory() as directory:
+219 |             path = Path(directory) / "invalid.json"
+220 |             original_bytes = b'{"schema_version": 1, "deployments": [], "audit_events": "not-a-list"}'
+    |                                                                                         ^^^^^^^^^^^^^^
+221 |             path.write_bytes(original_bytes)
+    |
+
+E501 Line too long (90 > 88)
+   --> tests/test_storage.py:266:89
+    |
+264 |             self.assertEqual(path.read_bytes(), original_bytes)
+265 |
+266 |     def test_failed_atomic_replacement_keeps_the_previous_valid_store_bytes(self) -> None:
+    |                                                                                         ^^
+267 |         with tempfile.TemporaryDirectory() as directory:
+268 |             path = Path(directory) / "deployments.json"
+    |
+
+Found 86 errors.

@@ -1,0 +1,21 @@
+{
+  "check": "compile",
+  "command": [
+    "/usr/local/bin/python3",
+    "-m",
+    "compileall",
+    "-q",
+    "src",
+    "tests",
+    ".harness"
+  ],
+  "started_at_utc": "2026-11-07T18:43:33.879545+00:00",
+  "completed_at_utc": "2026-11-07T18:43:33.935169+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout_file": "compile.stdout.txt",
+  "stderr_file": "compile.stderr.txt",
+  "exception": null,
+  "timed_out": false,
+  "timeout_seconds": 300
+}

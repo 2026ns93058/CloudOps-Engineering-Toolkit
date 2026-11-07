@@ -1,0 +1,21 @@
+{
+  "check": "ruff",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+    "-m",
+    "ruff",
+    "check",
+    "--config",
+    ".harness/ruff.toml",
+    "src",
+    "tests",
+    ".harness/run_harness.py"
+  ],
+  "started_at_utc": "2026-11-07T17:42:55.612355+00:00",
+  "completed_at_utc": "2026-11-07T17:42:55.679926+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout_file": "ruff.stdout.txt",
+  "stderr_file": "ruff.stderr.txt",
+  "exception": null
+}

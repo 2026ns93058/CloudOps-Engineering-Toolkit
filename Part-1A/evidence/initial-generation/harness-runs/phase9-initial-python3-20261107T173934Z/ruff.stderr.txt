@@ -1,0 +1,2 @@
+warning: The top-level linter settings are deprecated in favour of their counterparts in the `lint` section. Please update the following options in `.harness/ruff.toml`:
+  - 'select' -> 'lint.select'

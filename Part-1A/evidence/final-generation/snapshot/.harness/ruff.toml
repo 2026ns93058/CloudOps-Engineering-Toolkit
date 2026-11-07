@@ -1,0 +1,7 @@
+target-version = "py311"
+line-length = 88
+respect-gitignore = false
+force-exclude = false
+extend-exclude = []
+[lint]
+select = ["E", "F"]

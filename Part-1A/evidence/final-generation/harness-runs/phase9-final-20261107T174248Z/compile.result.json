@@ -1,0 +1,19 @@
+{
+  "check": "compile",
+  "command": [
+    "/Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+    "-m",
+    "compileall",
+    "-q",
+    "src",
+    "tests",
+    ".harness"
+  ],
+  "started_at_utc": "2026-11-07T17:42:55.562114+00:00",
+  "completed_at_utc": "2026-11-07T17:42:55.611777+00:00",
+  "exit_code": 0,
+  "status": "PASS",
+  "stdout_file": "compile.stdout.txt",
+  "stderr_file": "compile.stderr.txt",
+  "exception": null
+}

@@ -1,0 +1,8 @@
+{
+  "command": "python .harness/run_harness.py --evidence-dir evidence/initial-generation/harness-runs/phase9-initial-20261107T173851Z",
+  "exit_code": 127,
+  "status": "FAIL",
+  "stdout": "",
+  "stderr_file": "phase9-python-launcher.stderr.txt",
+  "issue": "The environment provides python3 but no python executable on PATH. The harness process did not start and produced no harness run directory."
+}

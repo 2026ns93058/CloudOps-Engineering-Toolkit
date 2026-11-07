@@ -1,0 +1,188 @@
+{
+  "captured_at_utc": "2026-11-07T18:47:56.778482+00:00",
+  "purpose": "Curated final-generation application, test, harness, documentation, and approved design-input snapshot after the final harness run; generated caches and bytecode are excluded.",
+  "source_test_harness_file_count": 19,
+  "input_file_count": 11,
+  "files": [
+    {
+      "path": ".gitignore",
+      "snapshot_path": "evidence/final-generation/snapshot/.gitignore",
+      "size_bytes": 247,
+      "sha256": "e84900a280f49b672da33258b2840b0a9970ca35c7c9dbde2ca243ea0ac16283"
+    },
+    {
+      "path": ".harness/README.md",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/README.md",
+      "size_bytes": 4829,
+      "sha256": "d52e02c5d198a71a61d8704947ee06f898e5ec8d614e97fa4720aa8315c40469"
+    },
+    {
+      "path": ".harness/bandit.yaml",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/bandit.yaml",
+      "size_bytes": 37,
+      "sha256": "a080e3b8023b87675d9cf67a36253c8ff26dafa2e8ef8536c273a60df15f9d4a"
+    },
+    {
+      "path": ".harness/pytest.ini",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/pytest.ini",
+      "size_bytes": 121,
+      "sha256": "f00583f1583f8d6fd31f319e6cb78d5502b277c6e9f9f679959d96a0c73e3557"
+    },
+    {
+      "path": ".harness/requirements.txt",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/requirements.txt",
+      "size_bytes": 37,
+      "sha256": "92bec8763ae62bc7c602c2a3d949d9ea25ece6dd4e584cca4e398351031c736d"
+    },
+    {
+      "path": ".harness/ruff.toml",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/ruff.toml",
+      "size_bytes": 137,
+      "sha256": "8b419b9a7b857eebd0eda52810e952f111b9c0902ef016df2686895405dbb1f9"
+    },
+    {
+      "path": ".harness/run_harness.py",
+      "snapshot_path": "evidence/final-generation/snapshot/.harness/run_harness.py",
+      "size_bytes": 20826,
+      "sha256": "5e2364795d5355a004a87c85b1264bb5bc95fcfba823bda3400d73db75a42769"
+    },
+    {
+      "path": ".specify/memory/constitution.md",
+      "snapshot_path": "evidence/final-generation/snapshot/.specify/memory/constitution.md",
+      "size_bytes": 6796,
+      "sha256": "d8d40bc1960b4807c84ce7952a897d629abc64f3dacfa8ee050076e1760d9359"
+    },
+    {
+      "path": "README.md",
+      "snapshot_path": "evidence/final-generation/snapshot/README.md",
+      "size_bytes": 3050,
+      "sha256": "c7a6e47fc26bd5ea5164f04bcfafc7a40826c9c01ba40e5e1655db38e9847cec"
+    },
+    {
+      "path": "harness-log.md",
+      "snapshot_path": "evidence/final-generation/snapshot/harness-log.md",
+      "size_bytes": 10170,
+      "sha256": "53c00cea17bde819d04a39de39d9015961af6e2186345ffa70c3ba4682732ba3"
+    },
+    {
+      "path": "pyproject.toml",
+      "snapshot_path": "evidence/final-generation/snapshot/pyproject.toml",
+      "size_bytes": 433,
+      "sha256": "7d6476a7e31bfbad57547f7862b8d2cc57243baa26f3e1639465ef5a0c27af66"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/contracts/cli.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/contracts/cli.md",
+      "size_bytes": 5294,
+      "sha256": "b4dba3a65ca9fc02cb1ceb00ff1cd8a9d4ac03a59780904a80384e49429db6cb"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/data-model.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/data-model.md",
+      "size_bytes": 6379,
+      "sha256": "7bd8a89172840325f64d2252a1cbb2aa9675dfdd321210c4340273d34fa504fb"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/plan.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/plan.md",
+      "size_bytes": 6202,
+      "sha256": "75c21e42debd810d72e1ad6e1cc8f4f703bf28779072146674fad9b12c4525b7"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/quickstart.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/quickstart.md",
+      "size_bytes": 4413,
+      "sha256": "7b80bacf6118465f3a30e8a2226b58bd3cf9d3cd16e27bf93e55aeb1bba5ebe5"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/spec.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/spec.md",
+      "size_bytes": 24799,
+      "sha256": "9342a05864b641a60d180d07dff617e2f714ad5e29a0c72cf5a2cac00f59a40a"
+    },
+    {
+      "path": "specs/001-deployment-readiness-tracker/tasks.md",
+      "snapshot_path": "evidence/final-generation/snapshot/specs/001-deployment-readiness-tracker/tasks.md",
+      "size_bytes": 26470,
+      "sha256": "e6389e7e5a687fae03dee2b8832e62d9e8b3b0041186aeacd7087c45472e9a7e"
+    },
+    {
+      "path": "src/cloudops_tracker/__init__.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/__init__.py",
+      "size_bytes": 60,
+      "sha256": "0d6eb932b9779a6379c3f96b76d43f5a300a43a229922a6e6fe93b86eccef5ff"
+    },
+    {
+      "path": "src/cloudops_tracker/__main__.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/__main__.py",
+      "size_bytes": 95,
+      "sha256": "7e88798476f7f03e09b883c802a7dfaec74ecd2eb03cf925b5f5036c09fd5480"
+    },
+    {
+      "path": "src/cloudops_tracker/cli.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/cli.py",
+      "size_bytes": 11645,
+      "sha256": "707b1c2cd21a07a04a634a280e7df681fe37ea8dfe970283bd48382e2a43dc05"
+    },
+    {
+      "path": "src/cloudops_tracker/domain.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/domain.py",
+      "size_bytes": 12922,
+      "sha256": "c201b838330a5f33d41c1e5adb6283746c0e1fc21288e114e787cfd2c861a22a"
+    },
+    {
+      "path": "src/cloudops_tracker/readiness.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/readiness.py",
+      "size_bytes": 2002,
+      "sha256": "da78896fb19b288a9febac91e695b5034757207e08accf9a22e450b22e0a4a2c"
+    },
+    {
+      "path": "src/cloudops_tracker/service.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/service.py",
+      "size_bytes": 20845,
+      "sha256": "f27188d71994802e3a80de5137fc466d20fe868c4f38ddec44c3cb4b93f267e0"
+    },
+    {
+      "path": "src/cloudops_tracker/storage.py",
+      "snapshot_path": "evidence/final-generation/snapshot/src/cloudops_tracker/storage.py",
+      "size_bytes": 11288,
+      "sha256": "5baecdbb0a8604aa5f0b56d29f815547baaf843fd5249b63664ac33b33cd0d29"
+    },
+    {
+      "path": "tests/test_cli.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_cli.py",
+      "size_bytes": 18803,
+      "sha256": "f17d600f0edc071513b6b78167ad08d43fb50c7fab967d43576458048d78f51e"
+    },
+    {
+      "path": "tests/test_domain.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_domain.py",
+      "size_bytes": 13155,
+      "sha256": "d3d1df5f62dff3c90721f5ff4bd6703c5d7d0d8a48bc07d4ffa4ba0c83425283"
+    },
+    {
+      "path": "tests/test_harness.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_harness.py",
+      "size_bytes": 33056,
+      "sha256": "f02d66cc52ac8851558ea4818d0af0be17e586c45d57fb3c7f69752aa1b32b0c"
+    },
+    {
+      "path": "tests/test_readiness.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_readiness.py",
+      "size_bytes": 4921,
+      "sha256": "11281a628932ccd93a7663f98d68bf82f292d5d4ab65beb7b2c7d61d216bd426"
+    },
+    {
+      "path": "tests/test_service.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_service.py",
+      "size_bytes": 42965,
+      "sha256": "273389955ec583eb03dc4494463d43c127ea3f1dfeff7fe17e6e531009271886"
+    },
+    {
+      "path": "tests/test_storage.py",
+      "snapshot_path": "evidence/final-generation/snapshot/tests/test_storage.py",
+      "size_bytes": 10489,
+      "sha256": "943c3a3ed8d009812462475dd48acd5c1c486cc798d77475424e1bae4e160fd8"
+    }
+  ]
+}
