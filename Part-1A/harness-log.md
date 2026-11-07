@@ -25,7 +25,7 @@
 
 ## Post-format repair validation
 
-- Status: complete; overall FAIL retained pending human review of the Bandit finding.
+- Status: complete; overall FAIL retained in historical evidence. The Bandit finding was subsequently reviewed and explicitly approved for a line-specific false-positive annotation.
 - Run timestamp (UTC): 2026-11-07T17:41:24.758104+00:00
 - Exact command: `python3 .harness/run_harness.py --evidence-dir evidence/final-generation/harness-runs/phase9-format-repair-rerun-20261107T174124Z`
 - Evidence destination: `evidence/final-generation/harness-runs/phase9-format-repair-rerun-20261107T174124Z/`
@@ -44,7 +44,7 @@
 
 ## Final-generation harness run
 
-- Status: complete; overall PASS, pending separate final human ACCEPT/REJECT.
+- Status: complete; overall PASS. The separate final human ACCEPT is recorded in `evidence/final-generation/human-review.md`.
 - Run timestamp (UTC): 2026-11-07T17:42:48.750026+00:00
 - Exact command: `python3 .harness/run_harness.py --evidence-dir evidence/final-generation/harness-runs/phase9-final-20261107T174248Z`
 - Evidence destination: `evidence/final-generation/harness-runs/phase9-final-20261107T174248Z/`
@@ -52,7 +52,7 @@
 - Actual execution interval: 2026-11-07T17:42:55.561944+00:00 through 2026-11-07T17:42:57.668524+00:00.
 - Actual outcome: harness exit code 0. `compile`, `ruff`, `bandit`, and `pytest` each PASS (exit 0); Pytest collected 60, with 0 failures, 0 errors, and 0 skipped. Overall PASS.
 - Preserved manifest, exact commands, outputs, per-check results, and JUnit report in the evidence destination. The README documents the local-only harness and the completed run.
-- Final human review remains pending; automated PASS is not recorded as acceptance.
+- Final human review was completed separately and recorded as ACCEPT in `evidence/final-generation/human-review.md`; automated PASS remains distinct from human acceptance.
 
 ## Review follow-up: Python environment and JUnit count semantics
 
@@ -64,7 +64,7 @@
 
 ## Stage 4 final validation
 
-- Status: started; outcome pending.
+- Status: complete; overall FAIL retained as historical evidence.
 - Run timestamp (UTC): 2026-11-07T18:40:06Z
 - Exact command: `python3 .harness/run_harness.py --evidence-dir evidence/final-generation/harness-runs/phase9-stage4-20261107T184006Z`
 - Evidence destination: `evidence/final-generation/harness-runs/phase9-stage4-20261107T184006Z/`
@@ -75,7 +75,7 @@
 
 ## Stage 4 revalidation after formatting repair
 
-- Status: started; outcome pending.
+- Status: complete; overall PASS. Compilation, Ruff, Bandit, and Pytest all passed (87 tests).
 - Run timestamp (UTC): 2026-11-07T18:43:21Z
 - Exact command: `python3 .harness/run_harness.py --evidence-dir evidence/final-generation/harness-runs/phase9-stage4-rerun-20261107T184321Z`
 - Evidence destination: `evidence/final-generation/harness-runs/phase9-stage4-rerun-20261107T184321Z/`

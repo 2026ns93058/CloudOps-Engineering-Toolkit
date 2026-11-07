@@ -7,12 +7,11 @@ test suite, harness configuration, execution records, failures, repairs, and
 final automated validation for the local CloudOps Deployment Management &
 Readiness Tracker.
 
-The manifest is preparatory evidence, not a human acceptance decision. The
-final-generation `human-review.md` record is **pending** and has not been
-created because no human ACCEPT or REJECT decision was provided. Task T039
-remains incomplete. Since T040 requires that human-review record to be present
-and verified, T040 also remains incomplete; the missing prerequisite is
-recorded here rather than represented as a pass. See [the task list](../../specs/001-deployment-readiness-tracker/tasks.md).
+The separate [final human-review record](./human-review.md) documents the
+explicit **ACCEPT** decision by Pravallitha Gangula, including reviewer
+identity, UTC timestamp, rationale, harness results, and documented
+limitations. T039 is complete. T040 is complete following the final evidence audit
+documented below. See [the task list](../../specs/001-deployment-readiness-tracker/tasks.md).
 
 ## Evidence locations
 
@@ -25,8 +24,9 @@ recorded here rather than represented as a pass. See [the task list](../../specs
   initial source, tests, README, project metadata, specification, plan, task
   list, data model, CLI contract, and constitution.
 - [Final-generation evidence](./) contains the curated final snapshot,
-  inventory, and four final-generation harness runs, including the Stage 4
-  failed attempt and successful rerun.
+  inventory, four final-generation harness runs, including the Stage 4
+  failed attempt and successful rerun, and the separate
+  [human-review record](./human-review.md).
 - [Curated final inventory](./final-inventory.json) records 30 files: 19
   source/test/harness files and 11 input files. Its entries include SHA-256
   hashes and paths into the [curated final snapshot](./snapshot/). Generated
@@ -60,7 +60,7 @@ The approved design and governance inputs are available in the repository:
 - [Quickstart](../../specs/001-deployment-readiness-tracker/quickstart.md)
   documents automated validation and disposable-store CLI scenarios.
 - [Task list](../../specs/001-deployment-readiness-tracker/tasks.md) records
-  task IDs, dependencies, and completion state. T039 and T040 remain unchecked.
+  task IDs, dependencies, and completion state. T039 and T040 are complete; all required artifacts, links, and consistency checks passed.
 
 ## Application, tests, and harness
 
@@ -154,18 +154,21 @@ Stage 4 rerun.
 | Initial/final harness manifests, per-check outputs, and JUnit reports | Present and linked |
 | Failure and repair chronology | Present in the [execution log](../../harness-log.md) and summarized above |
 | Harness execution instructions | Present in the [harness README](../../.harness/README.md) |
-| `evidence/final-generation/human-review.md` | **Pending / absent**; no decision, reviewer identity, or rationale was supplied |
-| T039 | **Incomplete**; requires an explicit human ACCEPT or REJECT |
-| T040 | **Incomplete**; the required human-review record cannot yet be verified |
+| [Final human-review record](./human-review.md) | Present; explicit ACCEPT by Pravallitha Gangula, with UTC timestamp, rationale, harness results, and limitations |
+| T039 | **Complete**; explicit human ACCEPT recorded separately from automated validation |
+| T040 | **Complete**; required artifacts, links, and consistency checks passed |
 
-No human decision or rationale is inferred from automated PASS. Once a human
-review decision is supplied and recorded under T039, verify that record and
-update this manifest before considering T040 complete. Until then, the absent
-review record is an outstanding requirement, not a passing evidence item.
+The human ACCEPT decision is explicitly recorded in `human-review.md` and is
+separate from automated PASS. The reviewer accepted the stated local-only
+assignment scope while documenting the absence of live infrastructure
+verification and the preserved earlier failed harness run.
+
+T040 must only be marked complete after the final independent evidence and
+link audit passes.
 
 ## Known limitations
 
-- This manifest does not substitute for the pending human review.
+- This manifest indexes the evidence; the separate human-review record contains the reviewer's final ACCEPT decision.
 - The harness validates local source/tests only; no real AWS deployment,
   Kubernetes interaction, or external deployment action is performed.
 - The application has no user authentication and relies on operator-provided
