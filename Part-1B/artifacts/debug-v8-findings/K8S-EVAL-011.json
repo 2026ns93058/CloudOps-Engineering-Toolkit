@@ -1,0 +1,39 @@
+{
+  "review_summary": "The review found no issues in the provided Kubernetes Deployment manifest. All security, resource, health probe, configuration, and reliability settings are correctly configured and meet the required standards.",
+  "resources_reviewed": [
+    {
+      "api_version": "apps/v1",
+      "kind": "Deployment",
+      "name": "default-replicas",
+      "namespace": null,
+      "document_index": 0,
+      "supported": true
+    }
+  ],
+  "unsupported_resources": [],
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-SEC-003",
+      "severity": "Medium",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "default-replicas",
+      "title": "Privilege escalation is not disabled",
+      "explanation": "The configured container security context does not explicitly disable privilege escalation.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation",
+        "observed_value": null,
+        "observation": "allowPrivilegeEscalation is not configured."
+      },
+      "remediation": "Set allowPrivilegeEscalation: false in the container security context."
+    }
+  ],
+  "model_metadata": {
+    "provider": "Ollama",
+    "model": "qwen3:4b",
+    "prompt_version": "1.0.1",
+    "temperature": 0.2,
+    "duration_ms": 14077
+  }
+}

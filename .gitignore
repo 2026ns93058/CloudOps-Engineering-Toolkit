@@ -22,3 +22,8 @@ Thumbs.db
 .idea/
 *.tmp
 *.swp
+# Part-1B local environment and generated caches
+Part-1B/.venv/
+Part-1B/__pycache__/
+Part-1B/.pytest_cache/
+Part-1B/.ruff_cache/

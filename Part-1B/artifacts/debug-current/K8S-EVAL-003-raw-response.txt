@@ -1,0 +1,53 @@
+{
+  "review_summary": "The review identified security configuration issues in the Deployment resource. The container is configured with privileged: true, which enables privileged execution. No resource requests or limits were specified, and readiness/liveness probes are missing.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-SEC-002",
+      "severity": "Critical",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "privileged-app",
+      "title": "Container privileged execution enabled",
+      "explanation": "The container's securityContext specifies privileged: true, allowing the container to run with full root privileges.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext.privileged",
+        "observed_value": "true",
+        "observation": "The container is explicitly configured to run as privileged."
+      },
+      "remediation": "Disable privileged execution by setting securityContext.privileged: false in the container's securityContext."
+    },
+    {
+      "finding_id": "F-002",
+      "issue_id": "K8S-RES-001",
+      "severity": "Medium",
+      "category": "Resource Management",
+      "resource_kind": "Deployment",
+      "resource_name": "privileged-app",
+      "title": "Container resource requests missing",
+      "explanation": "The container does not specify any resource requests, which can lead to resource starvation.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].resources.requests",
+        "observed_value": null,
+        "observation": "Resource requests are not defined for the container."
+      },
+      "remediation": "Define resource requests using resources.requests: {cpu: '100m', memory: '256Mi'} to ensure minimum resource allocation."
+    },
+    {
+      "finding_id": "F-003",
+      "issue_id": "K8S-RES-002",
+      "severity": "Medium",
+      "category": "Resource Management",
+      "resource_kind": "Deployment",
+      "resource_name": "privileged-app",
+      "title": "Container resource limits missing",
+      "explanation": "The container does not specify any resource limits, which can lead to resource exhaustion.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].resources.limits",
+        "observed_value": null,
+        "observation": "Resource limits are not defined for the container."
+      },
+      "remediation": "Define resource limits using resources.limits: {cpu: '500m', memory: '512Mi'} to cap resource usage."
+    }
+  ]
+}

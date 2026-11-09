@@ -1,0 +1,83 @@
+{
+  "total_cases": 4,
+  "cases": [
+    {
+      "case_id": "K8S-EVAL-008",
+      "description": "Deployment uses a root-capable container configuration without a non-root restriction.",
+      "category": "Security",
+      "input_manifest": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: root-app\nspec:\n  template:\n    spec:\n      containers:\n      - name: app\n        image: nginx:1.27\n        resources:\n          requests:\n            cpu: 100m\n            memory: 128Mi\n          limits:\n            cpu: 500m\n            memory: 512Mi\n        readinessProbe:\n          tcpSocket:\n            port: 80\n        livenessProbe:\n          tcpSocket:\n            port: 80\n",
+      "expected_outcome": "SUCCESS",
+      "expected_findings": [
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "root-app",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
+        }
+      ],
+      "expected_resources": [
+        {
+          "kind": "Deployment",
+          "name": "root-app"
+        }
+      ]
+    },
+    {
+      "case_id": "K8S-EVAL-011",
+      "description": "Deployment omits the replicas field; assess the Kubernetes default without overstating risk.",
+      "category": "Boundary",
+      "input_manifest": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: default-replicas\nspec:\n  selector:\n    matchLabels:\n      app: default-replicas\n  template:\n    metadata:\n      labels:\n        app: default-replicas\n    spec:\n      containers:\n      - name: app\n        image: nginx:1.27\n        resources:\n          requests:\n            cpu: 100m\n            memory: 128Mi\n          limits:\n            cpu: 500m\n            memory: 512Mi\n        securityContext:\n          runAsNonRoot: true\n          allowPrivilegeEscalation: false\n        readinessProbe:\n          tcpSocket:\n            port: 80\n        livenessProbe:\n          tcpSocket:\n            port: 80\n",
+      "expected_outcome": "SUCCESS",
+      "expected_findings": [],
+      "expected_resources": [
+        {
+          "kind": "Deployment",
+          "name": "default-replicas"
+        }
+      ]
+    },
+    {
+      "case_id": "K8S-EVAL-012",
+      "description": "Deployment has an empty securityContext object without explicit non-root enforcement.",
+      "category": "Ambiguous",
+      "input_manifest": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: ambiguous-security\nspec:\n  template:\n    spec:\n      containers:\n        - name: app\n          image: nginx:1.27\n          securityContext: {}",
+      "expected_outcome": "SUCCESS",
+      "expected_findings": [
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "ambiguous-security",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
+        }
+      ],
+      "expected_resources": [
+        {
+          "kind": "Deployment",
+          "name": "ambiguous-security"
+        }
+      ]
+    },
+    {
+      "case_id": "K8S-EVAL-020",
+      "description": "Service and Deployment have different selectors, but their intended relationship is not established by the manifest.",
+      "category": "Configuration",
+      "input_manifest": "apiVersion: v1\nkind: Service\nmetadata:\n  name: frontend-service\nspec:\n  selector:\n    app: frontend\n  ports:\n  - port: 80\n    targetPort: 8080\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: backend-app\nspec:\n  selector:\n    matchLabels:\n      app: backend\n  template:\n    metadata:\n      labels:\n        app: backend\n    spec:\n      containers:\n      - name: app\n        image: nginx:1.27\n        ports:\n        - containerPort: 8080\n        resources:\n          requests:\n            cpu: 100m\n            memory: 128Mi\n          limits:\n            cpu: 500m\n            memory: 512Mi\n        securityContext:\n          runAsNonRoot: true\n          allowPrivilegeEscalation: false\n        readinessProbe:\n          tcpSocket:\n            port: 8080\n        livenessProbe:\n          tcpSocket:\n            port: 8080\n",
+      "expected_outcome": "SUCCESS",
+      "expected_findings": [],
+      "expected_resources": [
+        {
+          "kind": "Service",
+          "name": "frontend-service"
+        },
+        {
+          "kind": "Deployment",
+          "name": "backend-app"
+        }
+      ]
+    }
+  ]
+}
