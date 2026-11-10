@@ -2,7 +2,6 @@
 
 from typing import Any
 
-
 FINDING_FIELDS = {
     "finding_id": str,
     "issue_id": (str, type(None)),

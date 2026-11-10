@@ -2,7 +2,6 @@
 
 from typing import Any
 
-
 WEIGHTS = {
     "issue_identification": 0.50,
     "severity_correctness": 0.20,

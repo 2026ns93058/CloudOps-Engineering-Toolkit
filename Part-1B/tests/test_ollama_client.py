@@ -1,7 +1,7 @@
 """Tests for Ollama connectivity and request error handling."""
 
-import requests
 import pytest
+import requests
 
 from k8s_review.ollama_client import (
     OllamaConfig,

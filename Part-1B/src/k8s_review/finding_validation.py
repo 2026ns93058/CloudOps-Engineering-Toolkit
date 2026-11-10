@@ -3,7 +3,6 @@
 import re
 from typing import Any
 
-
 ALLOWED_SEVERITIES = {
     "Critical",
     "High",

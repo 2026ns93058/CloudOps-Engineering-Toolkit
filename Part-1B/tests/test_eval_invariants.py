@@ -2,7 +2,6 @@
 
 from k8s_review.eval_invariants import evaluate_invariants
 
-
 DOCUMENTS = [
     {
         "apiVersion": "apps/v1",

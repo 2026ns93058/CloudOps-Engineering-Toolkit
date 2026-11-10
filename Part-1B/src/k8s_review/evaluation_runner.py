@@ -147,8 +147,8 @@ def _case_failure(case_id: str, error: Exception) -> dict[str, Any]:
     return {
         "case_id": case_id,
         "application_status": "FAILED",
-        "schema_pass": False,
-        "invariant_pass": False,
+        "schema_pass": False,  # nosec B105 - Boolean evaluation status, not a credential.
+        "invariant_pass": False,  # nosec B105 - Boolean evaluation status, not a credential.
         "semantic_score": 0.0,
         "precision": 0.0,
         "recall": 0.0,
@@ -159,7 +159,7 @@ def _case_failure(case_id: str, error: Exception) -> dict[str, Any]:
         "false_positive_count": 0,
         "false_negative_count": 0,
         "duplicate_count": 0,
-        "case_pass": False,
+        "case_pass": False,  # nosec B105 - Boolean evaluation status, not a credential.
         "failure_reasons": [
             classification["failure_type"],
             classification["error_type"],
@@ -263,9 +263,9 @@ def run_evaluation(
                             "case_id": case_id,
                             "application_status": "UNEXPECTED_SUCCESS",
                             "semantic_score": None,
-                            "schema_pass": True,
-                            "invariant_pass": True,
-                            "case_pass": False,
+                            "schema_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
+                            "invariant_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
+                            "case_pass": False,  # nosec B105 - Boolean evaluation status, not a credential.
                             "failure_reasons": [
                                 "Expected input rejection but review succeeded."
                             ],
@@ -297,8 +297,8 @@ def run_evaluation(
                             "case_id": case_id,
                             "application_status": "UNSUPPORTED_RESOURCE_RECORDED",
                             "semantic_score": None,
-                            "schema_pass": True,
-                            "invariant_pass": True,
+                            "schema_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
+                            "invariant_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
                             "case_pass": passed,
                             "failure_reasons": [] if passed else [
                                 "Unsupported resource record did not match expectation."
@@ -352,7 +352,7 @@ def run_evaluation(
                     results.append({
                         "case_id": case_id,
                         "application_status": "SUCCESS",
-                        "schema_pass": True,
+                        "schema_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
                         "invariant_pass": invariant_pass,
                         "resource_identity_pass": resource_identity_pass,
                         **metrics,
@@ -369,9 +369,9 @@ def run_evaluation(
                             "case_id": case_id,
                             "application_status": "INPUT_REJECTED",
                             "semantic_score": None,
-                            "schema_pass": True,
-                            "invariant_pass": True,
-                            "case_pass": True,
+                            "schema_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
+                            "invariant_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
+                            "case_pass": True,  # nosec B105 - Boolean evaluation status, not a credential.
                             "failure_reasons": [],
                         })
                     else:

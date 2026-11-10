@@ -2,7 +2,6 @@
 
 from typing import Any
 
-
 REQUIRED_FIELDS = ("apiVersion", "kind", "metadata")
 
 SUPPORTED_KINDS = {
