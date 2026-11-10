@@ -357,12 +357,14 @@ def review_static_configuration(
                     "Disable privileged mode unless it is explicitly required.",
                 ))
 
-            # An empty or absent securityContext alone is ambiguous.
-            # Check privilege escalation only when security settings exist.
+            # Privileged execution is reported by SEC-002, not again as SEC-003.
             if isinstance(security, dict) and security:
                 allow_escalation = security.get("allowPrivilegeEscalation")
 
-                if allow_escalation is not False:
+                if (
+                    container_security.get("privileged") is not True
+                    and allow_escalation is not False
+                ):
                     findings.append(_finding(
                         document,
                         "K8S-SEC-003",

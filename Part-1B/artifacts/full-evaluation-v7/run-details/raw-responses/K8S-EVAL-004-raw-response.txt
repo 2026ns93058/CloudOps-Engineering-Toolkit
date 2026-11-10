@@ -1,0 +1,21 @@
+{
+  "review_summary": "The review identified missing resource requests for the container in the Deployment.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-RES-001",
+      "severity": "Medium",
+      "category": "Resource Management",
+      "resource_kind": "Deployment",
+      "resource_name": "no-requests",
+      "title": "Missing container resource requests",
+      "explanation": "The container in the Deployment does not have any resource requests specified.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].resources.requests",
+        "observed_value": null,
+        "observation": "Resource requests are missing for the container."
+      },
+      "remediation": "Add resource requests to the container's resources block using the `requests` key."
+    }
+  ]
+}

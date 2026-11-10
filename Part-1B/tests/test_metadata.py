@@ -18,7 +18,7 @@ def test_metadata_contains_all_required_fields():
     assert metadata == {
         "provider": "Ollama",
         "model": "qwen3:4b",
-        "prompt_version": "1.0.4",
+        "prompt_version": "1.0.5",
         "temperature": 0.2,
         "duration_ms": 2457,
     }

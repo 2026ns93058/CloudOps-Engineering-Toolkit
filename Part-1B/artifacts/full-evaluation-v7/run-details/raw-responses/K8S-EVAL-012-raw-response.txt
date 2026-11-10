@@ -1,0 +1,21 @@
+{
+  "review_summary": "The review identified security configuration issues in the Deployment resource. The container uses a security context with an empty object, which does not enforce non-root execution, and the image tag is not mutable.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-SEC-001",
+      "severity": "Medium",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "ambiguous-security",
+      "title": "Container does not enforce non-root execution",
+      "explanation": "The container's security context is an empty object, which does not explicitly set runAsNonRoot to true. This allows the container to run as root.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext",
+        "observed_value": "null",
+        "observation": "The securityContext field is an empty object, indicating no explicit non-root enforcement."
+      },
+      "remediation": "Set runAsNonRoot: true in the container's securityContext to enforce non-root execution."
+    }
+  ]
+}

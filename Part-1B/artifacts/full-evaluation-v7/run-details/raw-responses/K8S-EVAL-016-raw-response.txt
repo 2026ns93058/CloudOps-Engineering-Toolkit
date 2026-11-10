@@ -1,0 +1,4 @@
+{
+  "review_summary": "No security, resource, reliability, or configuration issues found in the provided Secret resource. The secret is properly formatted with a type of Opaque and contains a password field with redacted content.",
+  "findings": []
+}

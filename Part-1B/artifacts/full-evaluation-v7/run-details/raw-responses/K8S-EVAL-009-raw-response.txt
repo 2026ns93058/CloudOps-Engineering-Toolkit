@@ -1,0 +1,37 @@
+{
+  "review_summary": "Security review completed for the Deployment resource. No critical security issues found. Resource requests and limits are not configured, but the security context settings are properly enforced.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-RES-001",
+      "severity": "Medium",
+      "category": "Resource Management",
+      "resource_kind": "Deployment",
+      "resource_name": "escalation-app",
+      "title": "Container resource requests are missing",
+      "explanation": "The container resource requests are not specified in the deployment manifest, which can lead to resource starvation and poor performance.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].resources.requests",
+        "observed_value": null,
+        "observation": "Container resource requests are absent."
+      },
+      "remediation": "Add resource requests to the container specification to define minimum resource requirements for the application."
+    },
+    {
+      "finding_id": "F-002",
+      "issue_id": "K8S-RES-002",
+      "severity": "Medium",
+      "category": "Resource Management",
+      "resource_kind": "Deployment",
+      "resource_name": "escalation-app",
+      "title": "Container resource limits are missing",
+      "explanation": "The container resource limits are not specified in the deployment manifest, which can lead to resource overcommitment and instability.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].resources.limits",
+        "observed_value": null,
+        "observation": "Container resource limits are absent."
+      },
+      "remediation": "Add resource limits to the container specification to define maximum resource usage for the application."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "review_summary": "Security review completed for the Deployment resource. No critical issues found in the provided manifest.",
+  "findings": []
+}

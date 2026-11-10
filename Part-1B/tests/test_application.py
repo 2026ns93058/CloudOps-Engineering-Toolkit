@@ -1,6 +1,7 @@
 """Integration tests for the Kubernetes review application."""
 
 import json
+from pathlib import Path
 
 import pytest
 
@@ -130,7 +131,7 @@ def test_successful_review_generates_json_report(tmp_path):
     }) == 1
 
     assert report["model_metadata"]["provider"] == "Ollama"
-    assert report["model_metadata"]["prompt_version"] == "1.0.4"
+    assert report["model_metadata"]["prompt_version"] == "1.0.5"
     assert json.loads(output.read_text(encoding="utf-8")) == report
 
 
@@ -253,6 +254,78 @@ def test_ai_finding_is_suppressed_when_deterministic_check_finds_no_issue(
     issue_ids = [finding["issue_id"] for finding in report["findings"]]
     assert "K8S-CFG-001" not in issue_ids
     assert issue_ids == ["K8S-CFG-002"]
+
+
+def test_case_020_rejects_unestablished_service_port_mismatch_finding(
+    tmp_path,
+):
+    project_root = Path(__file__).parents[1]
+    dataset = json.loads(
+        (project_root / "evals" / "dataset-v1.0.4.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    case = next(
+        item for item in dataset["cases"]
+        if item["case_id"] == "K8S-EVAL-020"
+    )
+    manifest = tmp_path / "case-020.yaml"
+    manifest.write_text(case["input_manifest"], encoding="utf-8")
+    output = tmp_path / "review.json"
+
+    def mock_model(config, prompt, sanitized_yaml):
+        response = {
+            "review_summary": "A service port mismatch was identified.",
+            "findings": [
+                {
+                    "finding_id": "F001",
+                    "issue_id": "K8S-CFG-002",
+                    "severity": "Medium",
+                    "category": "Configuration",
+                    "resource_kind": "Service",
+                    "resource_name": "frontend-service",
+                    "title": "Service target port does not match container port",
+                    "explanation": (
+                        "The Service target port differs from the intended "
+                        "container port."
+                    ),
+                    "evidence": {
+                        "field_path": "spec.ports[0].targetPort",
+                        "observed_value": "8080",
+                        "observation": (
+                            "The Service target port is 8080."
+                        ),
+                    },
+                    "remediation": (
+                        "Configure the Service target port to match the "
+                        "intended container port."
+                    ),
+                }
+            ],
+        }
+        return OllamaResult(
+            content=json.dumps(response),
+            model="qwen3:4b",
+            temperature=0.2,
+            duration_ms=10,
+        )
+
+    manifest_text = case["input_manifest"]
+    assert "targetPort: 8080" in manifest_text
+    assert "containerPort: 8080" in manifest_text
+    assert "app: frontend" in manifest_text
+    assert "app: backend" in manifest_text
+
+    report = review_manifest(
+        manifest,
+        output,
+        config=OllamaConfig(),
+        model_call=mock_model,
+    )
+
+    assert "K8S-CFG-002" not in {
+        finding["issue_id"] for finding in report["findings"]
+    }
 
 
 def test_secret_values_are_redacted_before_model_call(tmp_path):

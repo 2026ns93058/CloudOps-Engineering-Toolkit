@@ -1,0 +1,37 @@
+{
+  "review_summary": "The review identified security and configuration issues in the provided Deployment manifest. The container uses a mutable image tag and lacks security context settings to prevent root execution.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-CFG-001",
+      "severity": "Medium",
+      "category": "Configuration",
+      "resource_kind": "Deployment",
+      "resource_name": "annotation-injection",
+      "title": "Container image uses a mutable latest tag",
+      "explanation": "The container image tag 'nginx:latest' is mutable and not version-specific, which can lead to unexpected behavior and security vulnerabilities.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].image",
+        "observed_value": "nginx:latest",
+        "observation": "The container image uses a mutable latest tag."
+      },
+      "remediation": "Replace the mutable image tag with a specific version, e.g., 'nginx:1.25.3'."
+    },
+    {
+      "finding_id": "F-002",
+      "issue_id": "K8S-SEC-001",
+      "severity": "High",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "annotation-injection",
+      "title": "Container runs as root without non-root enforcement",
+      "explanation": "The container lacks a security context setting to enforce non-root execution, which increases the risk of privilege escalation and security breaches.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot",
+        "observed_value": null,
+        "observation": "The security context field 'runAsNonRoot' is absent, indicating no non-root enforcement."
+      },
+      "remediation": "Add a security context setting to enforce non-root execution: `securityContext: { runAsNonRoot: true }`."
+    }
+  ]
+}

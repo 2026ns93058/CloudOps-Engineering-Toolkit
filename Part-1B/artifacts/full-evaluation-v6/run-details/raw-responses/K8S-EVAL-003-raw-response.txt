@@ -1,0 +1,21 @@
+{
+  "review_summary": "Security review completed for Deployment 'privileged-app'. The deployment contains a container with privileged execution enabled, which is a security risk.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-SEC-002",
+      "severity": "High",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "privileged-app",
+      "title": "Privileged container execution enabled",
+      "explanation": "The container in the deployment has 'privileged: true' set in its securityContext, allowing the container to have full root privileges.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext.privileged",
+        "observed_value": "true",
+        "observation": "Privileged execution is explicitly enabled for the container."
+      },
+      "remediation": "Disable privileged execution by setting 'privileged: false' in the container's securityContext."
+    }
+  ]
+}

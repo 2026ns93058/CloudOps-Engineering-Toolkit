@@ -1,0 +1,21 @@
+{
+  "review_summary": "The review identified a single configuration issue in the provided Deployment manifest.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-CFG-001",
+      "severity": "Medium",
+      "category": "Configuration",
+      "resource_kind": "Deployment",
+      "resource_name": "latest-app",
+      "title": "Container image uses a mutable latest tag",
+      "explanation": "The container image tag 'latest' is mutable and can be changed without explicit versioning, which poses a risk of unexpected updates and versioning issues.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].image",
+        "observed_value": "nginx:latest",
+        "observation": "The container image uses a mutable latest tag."
+      },
+      "remediation": "Replace the mutable image tag with a specific version, e.g., 'nginx:1.25.3'."
+    }
+  ]
+}

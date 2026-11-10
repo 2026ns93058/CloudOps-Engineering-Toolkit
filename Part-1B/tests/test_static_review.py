@@ -3,6 +3,7 @@
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 
 from k8s_review.finding_validation import validate_findings
@@ -310,6 +311,62 @@ def test_privileged_container_is_reported_as_high_severity():
     assert finding["evidence"]["observed_value"] == str(
         manifest["spec"]["template"]["spec"]["containers"]
     )
+    assert_findings_are_valid(manifest, findings)
+
+
+@pytest.mark.parametrize(
+    ("security_context", "expected_issue", "evidence_path", "observed_value"),
+    [
+        (
+            {"runAsNonRoot": True, "privileged": True},
+            "K8S-SEC-002",
+            "spec.template.spec.containers",
+            None,
+        ),
+        (
+            {
+                "runAsNonRoot": True,
+                "privileged": True,
+                "allowPrivilegeEscalation": False,
+            },
+            "K8S-SEC-002",
+            "spec.template.spec.containers",
+            None,
+        ),
+        (
+            {"runAsNonRoot": True, "privileged": False},
+            "K8S-SEC-003",
+            "spec.template.spec.containers[0].securityContext."
+            "allowPrivilegeEscalation",
+            None,
+        ),
+    ],
+)
+def test_privileged_and_privilege_escalation_findings_are_distinct(
+    security_context,
+    expected_issue,
+    evidence_path,
+    observed_value,
+):
+    manifest = deployment({
+        "containers": [{
+            "name": "app",
+            "image": "nginx:1.27",
+            "securityContext": security_context,
+        }]
+    })
+
+    findings = review_static_configuration([manifest])
+
+    assert [finding["issue_id"] for finding in findings] == [expected_issue]
+    finding = findings[0]
+    assert finding["evidence"]["field_path"] == evidence_path
+    if expected_issue == "K8S-SEC-002":
+        assert finding["evidence"]["observed_value"] == str(
+            manifest["spec"]["template"]["spec"]["containers"]
+        )
+    else:
+        assert finding["evidence"]["observed_value"] == observed_value
     assert_findings_are_valid(manifest, findings)
 
 

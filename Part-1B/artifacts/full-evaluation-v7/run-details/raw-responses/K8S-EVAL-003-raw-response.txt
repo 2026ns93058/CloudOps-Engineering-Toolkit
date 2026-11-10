@@ -1,0 +1,21 @@
+{
+  "review_summary": "Security review identified a privileged container configuration. Resource and probe reviews were not applicable due to the resource being a Deployment without containers or probes defined.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-SEC-002",
+      "severity": "Critical",
+      "category": "Security",
+      "resource_kind": "Deployment",
+      "resource_name": "privileged-app",
+      "title": "Privileged container execution enabled",
+      "explanation": "The container securityContext specifies 'privileged: true', which allows the container to run with root privileges and bypass standard security restrictions.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].securityContext.privileged",
+        "observed_value": "true",
+        "observation": "The container security context explicitly enables privileged execution."
+      },
+      "remediation": "Disable privileged execution by setting 'privileged: false' in the container's securityContext."
+    }
+  ]
+}

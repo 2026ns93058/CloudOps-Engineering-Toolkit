@@ -1,0 +1,4 @@
+{
+  "review_summary": "The review found no security, resource, reliability, or configuration issues in the provided Deployment manifest. The workload is safe based on the manifest.",
+  "findings": []
+}

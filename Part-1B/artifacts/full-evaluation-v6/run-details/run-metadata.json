@@ -1,0 +1,11 @@
+{
+  "run_id": "20261110T044203Z-1171fcf0a24742a89b963a6717abbdd7",
+  "started_at": "2026-11-10T04:42:03.497698+00:00",
+  "completed_at": "2026-11-10T04:46:27.213276+00:00",
+  "dataset_filename": "dataset-v1.0.5.json",
+  "dataset_version": "1.0.5",
+  "model_provider": "Ollama",
+  "model_name": "qwen3:4b",
+  "temperature": 0.2,
+  "total_cases_processed": 20
+}

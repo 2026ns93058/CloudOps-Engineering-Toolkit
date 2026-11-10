@@ -32,6 +32,51 @@ class ReviewApplicationError(RuntimeError):
     """Raised when a manifest review cannot be completed."""
 
 
+def _service_target_relationship_is_unestablished(
+    finding: dict[str, Any],
+    documents: list[dict[str, Any]],
+) -> bool:
+    """Check whether a Service finding lacks a manifest-evidenced workload."""
+    if (
+        finding.get("issue_id") != "K8S-CFG-002"
+        or finding.get("resource_kind") != "Service"
+    ):
+        return False
+
+    service = next(
+        (
+            document
+            for document in documents
+            if document.get("kind") == "Service"
+            and document.get("metadata", {}).get("name")
+            == finding.get("resource_name")
+        ),
+        None,
+    )
+    if service is None:
+        return False
+
+    service_spec = service.get("spec")
+    selector = service_spec.get("selector") if isinstance(service_spec, dict) else None
+    if not isinstance(selector, dict) or not selector:
+        return True
+
+    for document in documents:
+        workload = _workload_pod_spec(document)
+        if workload is None:
+            continue
+
+        template = document.get("spec", {}).get("template", {})
+        metadata = template.get("metadata", {}) if isinstance(template, dict) else {}
+        labels = metadata.get("labels") if isinstance(metadata, dict) else None
+        if isinstance(labels, dict) and all(
+            labels.get(key) == value for key, value in selector.items()
+        ):
+            return False
+
+    return True
+
+
 def review_manifest(
     manifest_path: Path,
     output_path: Path,
@@ -102,14 +147,14 @@ def review_manifest(
     model_metadata = {
         "provider": "Ollama",
         "model": config.model if config else OllamaConfig().model,
-        "prompt_version": "1.0.4",
+        "prompt_version": "1.0.5",
         "temperature": config.temperature if config else OllamaConfig().temperature,
         "duration_ms": 0,
     }
 
     if supported_documents:
         project_root = Path(__file__).resolve().parents[2]
-        prompt_path = project_root / "prompts" / "k8s-review-v1.0.4.md"
+        prompt_path = project_root / "prompts" / "k8s-review-v1.0.5.md"
         prompt = prompt_path.read_text(encoding="utf-8")
         import json
         prompt += (
@@ -190,6 +235,12 @@ def review_manifest(
                 finding["resource_kind"],
                 finding["resource_name"],
             )
+
+            if _service_target_relationship_is_unestablished(
+                finding,
+                supported_documents,
+            ):
+                continue
 
             if (
                 issue_id is not None

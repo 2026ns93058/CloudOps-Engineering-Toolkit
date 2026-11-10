@@ -5,7 +5,7 @@ from typing import Any
 from k8s_review.ollama_client import OllamaResult
 
 PROVIDER = "Ollama"
-PROMPT_VERSION = "1.0.4"
+PROMPT_VERSION = "1.0.5"
 
 
 def build_model_metadata(result: OllamaResult) -> dict[str, Any]:

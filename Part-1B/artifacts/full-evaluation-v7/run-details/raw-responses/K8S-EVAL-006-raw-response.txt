@@ -1,0 +1,21 @@
+{
+  "review_summary": "The review identified missing readiness probes in the Deployment resource.",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "issue_id": "K8S-REL-001",
+      "severity": "Medium",
+      "category": "Reliability",
+      "resource_kind": "Deployment",
+      "resource_name": "no-readiness",
+      "title": "Missing readiness probe in Deployment",
+      "explanation": "The Deployment resource does not include a readiness probe configuration for its container.",
+      "evidence": {
+        "field_path": "spec.template.spec.containers[0].readinessProbe",
+        "observed_value": null,
+        "observation": "The readinessProbe field is absent in the container specification."
+      },
+      "remediation": "Add a readinessProbe configuration to the container specification within the Deployment template."
+    }
+  ]
+}
