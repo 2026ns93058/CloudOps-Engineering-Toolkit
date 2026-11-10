@@ -29,3 +29,32 @@ I added the standalone harness script and ran it. All 168 automated tests passed
 I reviewed the evaluation results and the latest harness execution evidence before recording my final acceptance. I also documented the known limitations. Since the evaluation uses 20 test cases, a passing result demonstrates that the assistant performed successfully against those cases, but it does not guarantee that every possible Kubernetes manifest will be handled correctly.
 
 **Evidence:** `FINAL-ACCEPTANCE.md`
+
+
+
+## Evaluation Iterations and Repair History
+
+Getting to a passing evaluation took seven full runs. The first five fell short of the acceptance threshold, while the final two passed. I retained the artifacts from every run so that the evaluation progress can be reviewed and verified.
+
+**Nov 9, 2026**
+
+- **V1:** The first full evaluation scored 60.69% and failed, with semantic mismatches and execution failures. (`artifacts/full-evaluation-v1/`)
+- **V2:** The score improved slightly to 62.16%, but the evaluation still failed. (`artifacts/full-evaluation-v2/`)
+- **V3:** The evaluation scored 73.63%. Schema and invariant checks passed, but the semantic score remained below the required threshold. (`artifacts/full-evaluation-v3/`)
+- **V4:** The score reached 78.43%, which was close to but still below the 80% acceptance threshold. (`artifacts/full-evaluation-v4/`)
+
+**Nov 9–10, 2026**
+
+- **V5:** The evaluation scored 72.55%, lower than V4, and did not meet the acceptance threshold. (`artifacts/full-evaluation-v5/`)
+
+**Nov 10, 2026**
+
+- **V6:** Using dataset version 1.0.5, the evaluation passed with a score of 97.71%. (`artifacts/full-evaluation-v6/`)
+- **V7:** Using dataset version 1.0.6, the evaluation passed with a score of 100%. This was the final evaluation used for the project results. (`artifacts/full-evaluation-v7/`)
+
+Changes and refinements were made between evaluation runs, followed by re-evaluation. The scores above reflect the actual recorded results, and the corresponding artifact folders preserve the evidence for each run.
+
+
+
+
+
