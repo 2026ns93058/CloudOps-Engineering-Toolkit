@@ -1,10 +1,10 @@
 """Command-line interface for the Kubernetes Manifest Review Assistant."""
 
 import argparse
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
-from k8s_review.application import ReviewApplicationError, review_manifest
+from k8s_review.application import review_manifest
 from k8s_review.eval_dataset import load_evaluation_dataset
 from k8s_review.evaluation_results import (
     build_evaluation_results,
@@ -51,6 +51,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="Evaluation results JSON output path.",
     )
     parser.add_argument(
+        "--no-raw-response-capture",
+        dest="capture_raw_responses",
+        action="store_false",
+        default=True,
+        help="Do not save raw model responses for this evaluation run.",
+    )
+    parser.add_argument(
         "--version",
         action="version",
         version="Kubernetes Manifest Review Assistant 0.1.0",
@@ -58,15 +65,23 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _run_evaluation(dataset_path: Path, results_path: Path) -> int:
+def _run_evaluation(
+    dataset_path: Path,
+    results_path: Path,
+    capture_raw_responses: bool = True,
+) -> int:
     """Run the evaluation pipeline and save its results."""
-    started_at = datetime.now(timezone.utc).isoformat()
+    started_at = datetime.now(UTC).isoformat()
     config = OllamaConfig()
 
     try:
         dataset = load_evaluation_dataset(dataset_path)
-        dataset_results = run_evaluation(dataset_path, config=config)
-        completed_at = datetime.now(timezone.utc).isoformat()
+        dataset_results = run_evaluation(
+            dataset_path,
+            config=config,
+            capture_raw_responses=capture_raw_responses,
+        )
+        completed_at = datetime.now(UTC).isoformat()
 
         evaluation = build_evaluation_results(
             case_results=dataset_results,
@@ -108,7 +123,11 @@ def main() -> int:
     if args.evaluate:
         if args.manifest is not None:
             parser.error("Do not provide a manifest path with --evaluate.")
-        return _run_evaluation(args.dataset, args.results)
+        return _run_evaluation(
+            args.dataset,
+            args.results,
+            capture_raw_responses=args.capture_raw_responses,
+        )
 
     if args.manifest is None:
         parser.print_help()

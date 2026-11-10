@@ -68,7 +68,7 @@ def test_evaluation_results_record_selected_dataset_version(
     monkeypatch.setattr(
         cli,
         "run_evaluation",
-        lambda dataset_path, config: [{
+        lambda dataset_path, config, capture_raw_responses: [{
             "case_id": "MOCK-001",
             "application_status": "SUCCESS",
             "semantic_score": 1.0,
@@ -78,8 +78,26 @@ def test_evaluation_results_record_selected_dataset_version(
         }],
     )
 
-    exit_code = cli._run_evaluation(dataset_path, results_path)
+    exit_code = cli._run_evaluation(
+        dataset_path,
+        results_path,
+        capture_raw_responses=False,
+    )
 
     assert exit_code == 0
     result = json.loads(results_path.read_text(encoding="utf-8"))
     assert result["dataset_version"] == expected_version
+
+
+def test_evaluation_raw_response_capture_is_enabled_by_default():
+    args = build_parser().parse_args(["--evaluate"])
+
+    assert args.capture_raw_responses is True
+
+
+def test_evaluation_raw_response_capture_can_be_disabled():
+    args = build_parser().parse_args(
+        ["--evaluate", "--no-raw-response-capture"]
+    )
+
+    assert args.capture_raw_responses is False
