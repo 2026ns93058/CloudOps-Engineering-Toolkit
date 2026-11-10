@@ -1,7 +1,11 @@
 """Tests for the command-line interface."""
 
+import json
+from pathlib import Path
+
 import pytest
 
+from k8s_review import cli
 from k8s_review.cli import build_parser
 
 
@@ -43,3 +47,39 @@ def test_output_argument():
     )
 
     assert args.output.name == "review.json"
+
+
+@pytest.mark.parametrize(
+    ("dataset_name", "expected_version"),
+    [
+        ("dataset.json", "1.0.0"),
+        ("dataset-v1.0.4.json", "1.0.4"),
+    ],
+)
+def test_evaluation_results_record_selected_dataset_version(
+    tmp_path,
+    monkeypatch,
+    dataset_name,
+    expected_version,
+):
+    project_root = Path(__file__).parents[1]
+    dataset_path = project_root / "evals" / dataset_name
+    results_path = tmp_path / "evaluation-results.json"
+    monkeypatch.setattr(
+        cli,
+        "run_evaluation",
+        lambda dataset_path, config: [{
+            "case_id": "MOCK-001",
+            "application_status": "SUCCESS",
+            "semantic_score": 1.0,
+            "schema_pass": True,
+            "invariant_pass": True,
+            "case_pass": True,
+        }],
+    )
+
+    exit_code = cli._run_evaluation(dataset_path, results_path)
+
+    assert exit_code == 0
+    result = json.loads(results_path.read_text(encoding="utf-8"))
+    assert result["dataset_version"] == expected_version

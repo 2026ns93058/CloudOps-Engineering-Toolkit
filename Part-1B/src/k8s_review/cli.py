@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from k8s_review.application import ReviewApplicationError, review_manifest
+from k8s_review.eval_dataset import load_evaluation_dataset
 from k8s_review.evaluation_results import (
     build_evaluation_results,
     write_evaluation_results,
@@ -63,12 +64,13 @@ def _run_evaluation(dataset_path: Path, results_path: Path) -> int:
     config = OllamaConfig()
 
     try:
+        dataset = load_evaluation_dataset(dataset_path)
         dataset_results = run_evaluation(dataset_path, config=config)
         completed_at = datetime.now(timezone.utc).isoformat()
 
         evaluation = build_evaluation_results(
             case_results=dataset_results,
-            dataset_version="1.0.0",
+            dataset_version=dataset["dataset_version"],
             model_metadata={
                 "provider": "Ollama",
                 "model": config.model,
