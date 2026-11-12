@@ -126,4 +126,22 @@ Refer to the following evidence:
 - `artifacts/harness-runs/` — individual harness execution results.
 - `harness-log.md` — development and harness activity log.
 
+## Output Contract and Evaluation Methodology
+
+The CLI emits a JSON review report with four top-level fields:
+
+- `review_summary`: overall review summary.
+- `resources_reviewed`: supported resources actually reviewed.
+- `unsupported_resources`: resources not reviewed.
+- `findings`: structured findings with finding/issue IDs, severity, category, resource identity, title, explanation, manifest-grounded evidence, and remediation.
+
+The application validates model responses against the output schema before accepting them. The evaluation harness independently checks:
+
+1. **Schema:** valid JSON, required fields, and enumerated values.
+2. **Structural and safety invariants:** resource identity, manifest-grounded evidence, and safety requirements.
+3. **Semantic quality:** expected issue matching, false positives/negatives, severity, evidence, and remediation.
+4. **Acceptance:** aggregate semantic score of at least 80%, with schema and safety gates passing.
+
+V7 processed 20 cases and all 20 application-level outcomes passed. Seventeen applicable cases received semantic scores, with an aggregate score of 100%. The other three were rejected or handled as unsupported and were not included in semantic scoring.
+
 **Note:** These results demonstrate performance against the defined evaluation dataset. They do not guarantee correct handling of every possible Kubernetes manifest.
