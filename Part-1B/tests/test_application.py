@@ -347,7 +347,9 @@ def test_secret_values_are_redacted_before_model_call(tmp_path):
 
     assert "KNOWN_SECRET_MARKER_123" not in captured["input"]
     assert "[REDACTED]" in captured["input"]
-    assert "KNOWN_SECRET_MARKER_123" not in output.read_text(encoding="utf-8")
+    report_text = output.read_text(encoding="utf-8")
+    assert "KNOWN_SECRET_MARKER_123" not in report_text
+    assert "KNOWN_SECRET_MARKER_123" not in json.dumps(report)
 
 
 def test_invalid_model_schema_is_rejected(tmp_path):
