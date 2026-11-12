@@ -70,8 +70,8 @@ def test_missing_optional_configuration_does_not_create_findings():
     assert review_static_configuration([manifest]) == []
 
 
-def test_eval_004_fixture_and_expected_resource_finding_are_inconsistent():
-    """Review note: expected RES-001 conflicts with the absent resources block."""
+def test_eval_004_does_not_expect_resource_findings_when_resources_absent():
+    """The V1.0.6 case must not expect resource findings without a resources block."""
     project_root = Path(__file__).resolve().parents[1]
     dataset = json.loads(
         (project_root / "evals" / "dataset.json").read_text(encoding="utf-8")
@@ -84,8 +84,8 @@ def test_eval_004_fixture_and_expected_resource_finding_are_inconsistent():
     container = manifest["spec"]["template"]["spec"]["containers"][0]
 
     assert "resources" not in container
-    assert any(
-        finding["issue_id"] == "K8S-RES-001"
+    assert not any(
+        finding["issue_id"] in {"K8S-RES-001", "K8S-RES-002"}
         for finding in case["expected_findings"]
     )
 
