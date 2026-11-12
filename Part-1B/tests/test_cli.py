@@ -52,7 +52,7 @@ def test_output_argument():
 @pytest.mark.parametrize(
     ("dataset_name", "expected_version"),
     [
-        ("dataset.json", "1.0.0"),
+        ("dataset.json", "1.0.6"),
         ("dataset-v1.0.4.json", "1.0.4"),
     ],
 )
