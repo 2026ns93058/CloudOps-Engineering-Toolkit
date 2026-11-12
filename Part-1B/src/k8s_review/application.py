@@ -159,7 +159,7 @@ def review_manifest(
         import json
         prompt += (
             "\n\n## Controlled Issue Catalogue\n"
-            "Select issue_id only from this catalogue. "
+            "Select issue_id only from this catalogue. "  # nosec B608 - prompt text, not SQL
             "Use null only when no catalogue entry applies. "
             "Do not invent identifiers.\n"
             + json.dumps(ISSUE_CATALOG, indent=2)

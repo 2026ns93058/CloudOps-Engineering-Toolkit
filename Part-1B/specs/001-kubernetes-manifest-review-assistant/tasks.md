@@ -64,27 +64,27 @@
 - [ ] T045 Run the initial evaluation and preserve its complete evidence.
 - [ ] T046 Analyse failed cases and identify root causes.
 - [ ] T047 Make targeted prompt or application repairs based on recorded failures.
-- [ ] T048 Rerun the complete evaluation after repairs.
-- [ ] T049 Preserve initial and final evaluation results separately.
+- [x] T048 Rerun the complete evaluation after repairs.
+- [x] T049 Preserve initial and final evaluation results separately.
 - [ ] T050 Record commands, timestamps, errors, repairs, and outcomes in the harness log.
 - [ ] T051 Verify that no Secret values or credentials appear in evidence.
 
 ## Phase 7: Quality Checks and Human Review
 
-- [ ] T052 Run Python compilation checks.
-- [ ] T053 Run Ruff lint checks.
-- [ ] T054 Run Bandit security checks.
-- [ ] T055 Run the complete pytest suite.
+- [x] T052 Run Python compilation checks.
+- [x] T053 Run Ruff lint checks.
+- [x] T054 Run Bandit security checks.
+- [x] T055 Run the complete pytest suite.
 - [ ] T056 Review all final evaluation failures and limitations.
 - [ ] T057 Perform final human review of application output and evidence.
 - [ ] T058 Record human acceptance or rejection with reviewer and timestamp.
 
 ## Phase 8: Documentation and Submission Readiness
 
-- [ ] T059 Complete the Part 1B README with setup and execution instructions.
-- [ ] T060 Document Ollama installation, model setup, and local execution.
+- [x] T059 Complete the Part 1B README with setup and execution instructions.
+- [x] T060 Document Ollama installation, model setup, and local execution.
 - [ ] T061 Document the output contract and evaluation methodology.
-- [ ] T062 Document known limitations and model failure handling.
+- [x] T062 Document known limitations and model failure handling.
 - [ ] T063 Verify all required specification and harness artifacts are present.
 - [ ] T064 Verify no API keys, passwords, or other secrets are committed.
 - [ ] T065 Verify the repository is ready for the final GitHub submission.

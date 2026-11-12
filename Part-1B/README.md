@@ -71,6 +71,32 @@ The harness runs automated tests and evaluates the application against the versi
 
 ## AI Runtime
 
+### Ollama Installation and Model Setup
+
+1. Install Ollama for macOS from the official website: https://ollama.com/download
+2. Open the Ollama application and ensure the local runtime is running.
+3. Pull the required model:
+
+   ```bash
+   ollama pull qwen3:4b
+   ```
+
+4. Verify that the model is available:
+
+   ```bash
+   ollama list
+   ```
+
+5. If needed, start the Ollama service from Terminal:
+
+   ```bash
+   ollama serve
+   ```
+
+6. Activate the project's Python virtual environment, install the project dependencies, and run the CLI or evaluation harness as described above.
+
+The application uses the local Ollama runtime. Model availability and successful inference depend on the local machine having sufficient resources.
+
 The application uses a local Ollama runtime with Qwen3:4b. No paid external AI API is required.
 
 ## Final Evaluation and Acceptance
