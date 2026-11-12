@@ -111,19 +111,22 @@ The final V7 evaluation used dataset version 1.0.6 and achieved:
 - **Acceptance threshold:** 80%
 - **Overall evaluation status:** PASS
 
-The separate November 10 harness execution also completed successfully:
+The November 10 V7 acceptance run and the later November 12 full harness verification are separate records. The latest November 12 run used the default `evals/dataset.json` (verified byte-for-byte identical to `evals/dataset-v1.0.6.json`) and completed with:
 
-- **Automated code-validation tests:** 168 passed
+- **Automated code-validation tests:** 169 passed
 - **Evaluation cases processed:** 20
+- **Aggregate semantic score:** 100% across the 17 applicable cases
 - **Overall harness status:** PASS
+- **Evidence:** `artifacts/harness-runs/evaluation-20261112T144214Z.json`
 
-The 168 automated tests are separate from the 20 evaluation cases. The 100% semantic score applies only to the 17 applicable cases.
+The 169 automated tests are separate from the 20 evaluation cases. The semantic score applies only to the 17 applicable cases; the other three were rejected or handled as unsupported.
 
 Refer to the following evidence:
 
 - `FINAL-ACCEPTANCE.md` — final human acceptance and known limitations.
 - `artifacts/full-evaluation-v7/` — V7 evaluation evidence.
-- `artifacts/harness-runs/` — individual harness execution results.
+- `artifacts/harness-runs/` — individual harness execution results, including the latest November 12 verification.
+- `evals/dataset.json` — default harness dataset; it is byte-for-byte identical to `evals/dataset-v1.0.6.json`.
 - `harness-log.md` — development and harness activity log.
 
 ## Output Contract and Evaluation Methodology
