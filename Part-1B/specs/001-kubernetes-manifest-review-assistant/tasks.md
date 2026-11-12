@@ -83,7 +83,7 @@
 
 - [x] T059 Complete the Part 1B README with setup and execution instructions.
 - [x] T060 Document Ollama installation, model setup, and local execution.
-- [ ] T061 Document the output contract and evaluation methodology.
+- [x] T061 Document the output contract and evaluation methodology.
 - [x] T062 Document known limitations and model failure handling.
 - [ ] T063 Verify all required specification and harness artifacts are present.
 - [ ] T064 Verify no API keys, passwords, or other secrets are committed.
