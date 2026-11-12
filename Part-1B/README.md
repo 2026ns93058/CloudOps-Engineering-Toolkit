@@ -67,7 +67,7 @@ Run the complete Part-1B evaluation harness:
 ./.harness/run.sh
 ```
 
-The harness runs automated tests and evaluates the application against the versioned evaluation dataset. Evaluation results are saved under `artifacts/harness-runs/`.
+The harness runs automated tests and evaluates the application against `evals/dataset.json`, the default dataset. The tracked `evals/dataset.json` is byte-for-byte identical to `evals/dataset-v1.0.6.json` (version 1.0.6, 20 cases). Evaluation results are saved under `artifacts/harness-runs/`.
 
 ## AI Runtime
 
@@ -148,3 +148,5 @@ The application validates model responses against the output schema before accep
 V7 processed 20 cases and all 20 application-level outcomes passed. Seventeen applicable cases received semantic scores, with an aggregate score of 100%. The other three were rejected or handled as unsupported and were not included in semantic scoring.
 
 **Note:** These results demonstrate performance against the defined evaluation dataset. They do not guarantee correct handling of every possible Kubernetes manifest.
+
+The default evaluation input is `evals/dataset.json`. It is kept identical to the versioned final dataset `evals/dataset-v1.0.6.json`; the harness script explicitly selects `evals/dataset.json`.
