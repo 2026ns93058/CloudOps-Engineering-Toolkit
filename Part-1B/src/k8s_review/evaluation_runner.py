@@ -163,7 +163,7 @@ def _case_failure(case_id: str, error: Exception) -> dict[str, Any]:
         "failure_reasons": [
             classification["failure_type"],
             classification["error_type"],
-            classification["error_message"],  # TEMPORARY DEBUG
+            "Failure details withheld to prevent sensitive data exposure.",
         ],
     }
 
