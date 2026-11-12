@@ -90,3 +90,25 @@ The detailed result artifacts are preserved at `artifacts/full-evaluation-v1/` t
 ### Traceability limitation
 
 The artifacts establish the observed failure patterns and the sequence of subsequent passing runs. They do not, by themselves, provide a complete commit-by-commit mapping from each individual failure to a specific prompt or application repair. No such mapping is invented here. The exact repair rationale for each intermediate change remains a documentation gap.
+
+
+## Latest Harness Verification (Nov 12, 2026)
+
+A fresh full harness run was completed after the latest application and test corrections.
+
+- Command: `bash .harness/run.sh` (from `Part-1B/`)
+- Dataset: `evals/dataset.json`, version 1.0.6
+- Automated tests: 169 passed, 0 failed
+- Evaluation cases processed: 20
+- Aggregate semantic score: 100.00%
+- Overall status: PASS
+- Run result filename: `artifacts/harness-runs/evaluation-20261112T144214Z.json`
+- Test duration: 0.34 seconds
+
+The run output confirms that the harness completed successfully. The result JSON was generated in the local working tree; it must be added to the repository if it is not already tracked before the evidence package is considered fully committed.
+
+## Security Verification (Nov 12, 2026)
+
+Gitleaks 8.30.1 was run against Git history and scanned 77 commits (approximately 5.76 MB), reporting 11 generic-api-key detections. The flagged values were inspected and classified as intentional synthetic test markers in Kubernetes Secret evaluation fixtures and regression tests, including historical dataset versions. A repository-wide search of the known markers found them only in evaluation datasets and test-source/evidence snapshots. A separate search of `Part-1B/artifacts` and `Part-1B/logs` returned no matches.
+
+No live credential was identified in the reviewed findings. This is a classification of the 11 reported detections, not a claim that every possible secret pattern is impossible. The synthetic markers are intentionally retained because they are used to test redaction and must not be mistaken for production credentials.
