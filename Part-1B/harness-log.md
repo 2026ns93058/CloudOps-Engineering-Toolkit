@@ -105,7 +105,7 @@ A fresh full harness run was completed after the latest application and test cor
 - Run result filename: `artifacts/harness-runs/evaluation-20261112T144214Z.json`
 - Test duration: 0.34 seconds
 
-The run output confirms that the harness completed successfully. The result JSON was generated in the local working tree; it must be added to the repository if it is not already tracked before the evidence package is considered fully committed.
+The run output confirms that the harness completed successfully. The result JSON was subsequently committed and pushed to the public repository at `artifacts/harness-runs/evaluation-20261112T144214Z.json` (commit `2b4e987`).
 
 ## Security Verification (Nov 12, 2026)
 
