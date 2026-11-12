@@ -75,20 +75,23 @@ The application uses a local Ollama runtime with Qwen3:4b. No paid external AI A
 
 ## Final Evaluation and Acceptance
 
-The implementation and evaluation workflow are complete.
-
 The final V7 evaluation used dataset version 1.0.6 and achieved:
 
-- **Evaluation cases:** 20
-- **Aggregate semantic score:** 100%
+- **Application-level cases processed:** 20
+- **Application-level outcomes passed:** 20/20
+- **Semantic cases evaluated:** 17
+- **Aggregate semantic score:** 100% across the 17 applicable cases
+- **Excluded cases:** K8S-EVAL-013 and K8S-EVAL-014 (input rejected), and K8S-EVAL-015 (unsupported resource recorded)
 - **Acceptance threshold:** 80%
 - **Overall evaluation status:** PASS
 
-The November 10 harness execution also completed successfully:
+The separate November 10 harness execution also completed successfully:
 
-- **Automated tests:** 168 passed
+- **Automated code-validation tests:** 168 passed
 - **Evaluation cases processed:** 20
 - **Overall harness status:** PASS
+
+The 168 automated tests are separate from the 20 evaluation cases. The 100% semantic score applies only to the 17 applicable cases.
 
 Refer to the following evidence:
 
@@ -97,4 +100,4 @@ Refer to the following evidence:
 - `artifacts/harness-runs/` — individual harness execution results.
 - `harness-log.md` — development and harness activity log.
 
-**Note:** The evaluation results demonstrate performance against the defined test dataset. They do not guarantee correct handling of every possible Kubernetes manifest.
+**Note:** These results demonstrate performance against the defined evaluation dataset. They do not guarantee correct handling of every possible Kubernetes manifest.
