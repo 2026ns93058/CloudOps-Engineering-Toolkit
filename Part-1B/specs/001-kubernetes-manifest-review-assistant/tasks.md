@@ -67,7 +67,7 @@
 - [x] T048 Rerun the complete evaluation after repairs.
 - [x] T049 Preserve initial and final evaluation results separately.
 - [ ] T050 Record commands, timestamps, errors, repairs, and outcomes in the harness log.
-- [ ] T051 Verify that no Secret values or credentials appear in evidence.
+- [x] T051 Verify that no Secret values or credentials appear in evidence. (Reviewed known synthetic markers; no matches in generated artifacts/logs; evidence-source matches are intentional test fixtures.)
 
 ## Phase 7: Quality Checks and Human Review
 
@@ -86,7 +86,7 @@
 - [x] T061 Document the output contract and evaluation methodology.
 - [x] T062 Document known limitations and model failure handling.
 - [x] T063 Verify all required specification and harness artifacts are present.
-- [ ] T064 Verify no API keys, passwords, or other secrets are committed.
+- [x] T064 Verify no API keys, passwords, or other secrets are committed. (Gitleaks 8.30.1 scanned 77 commits; all 11 reported detections were reviewed and classified as synthetic test fixtures.)
 - [ ] T065 Verify the repository is ready for the final GitHub submission.
 
 ## Completion Rules
