@@ -6,6 +6,8 @@ from pathlib import Path
 
 import pytest
 
+from k8s_review.ollama_client import OllamaRequestError
+
 from k8s_review.evaluation_runner import (
     RawResponseCaptureError,
     run_evaluation,
@@ -195,6 +197,27 @@ def _mock_model_response(*args):
         temperature=0.2,
         duration_ms=10,
     )
+
+
+def test_failure_record_does_not_persist_raw_exception_message(tmp_path):
+    secret_marker = "SENSITIVE-EXCEPTION-MARKER-987"
+    case = _successful_case("TEST-006", "secure-app")
+
+    def failing_model(*args):
+        raise OllamaRequestError(f"Model failed while processing {secret_marker}")
+
+    results = run_evaluation(
+        write_dataset(tmp_path, [case]),
+        model_call=failing_model,
+        capture_raw_responses=False,
+    )
+
+    failure_text = json.dumps(results[0])
+    assert results[0]["application_status"] == "FAILED"
+    assert "MODEL_EXECUTION_FAILURE" in failure_text
+    assert "OllamaRequestError" in failure_text
+    assert "Failure details withheld" in failure_text
+    assert secret_marker not in failure_text
 
 
 def test_capture_saves_exact_response_for_every_model_reviewed_case(tmp_path):
