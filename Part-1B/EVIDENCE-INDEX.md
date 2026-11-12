@@ -40,3 +40,24 @@ V7 processed 20 cases and all 20 application-level outcomes passed. Seventeen ap
 ## Interpretation
 
 The V1.0.0 initial/final-generation JSON files are historical snapshots. The final accepted result is V7 on dataset v1.0.6, supported by the V7 run artifacts and separate acceptance record. Do not describe the V1.0.0 summaries as V7 or the 100% semantic score as covering all 20 cases.
+
+
+## Latest Harness Verification — Nov 12, 2026
+
+- Local full-harness run: `artifacts/harness-runs/evaluation-20261112T144214Z.json`
+- Dataset version: 1.0.6
+- Automated tests: 169 passed
+- Evaluation cases: 20 processed
+- Aggregate semantic score: 100.00%
+- Overall status: PASS
+
+The run was generated locally after the latest corrections. Confirm that the JSON result is committed to GitHub alongside this index before final submission.
+
+## Security Review — Nov 12, 2026
+
+- Gitleaks 8.30.1 scanned 77 Git commits (approximately 5.76 MB) and reported 11 generic-api-key detections.
+- The reported locations were reviewed. The values correspond to intentional synthetic Secret/exception markers in test code and versioned evaluation datasets, including preserved historical snapshots.
+- Searching the known markers across `Part-1B` found them in datasets and test-source/evidence snapshots. Searching `Part-1B/artifacts` and `Part-1B/logs` returned no matches.
+- No live credential was identified among the reviewed detections. The synthetic markers remain intentionally present as redaction-test inputs; they are not production credentials.
+
+The Gitleaks findings are documented and classified rather than suppressed or deleted. This review covers the reported detections and known markers; it is not a guarantee against every possible secret pattern.
