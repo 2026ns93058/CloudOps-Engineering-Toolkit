@@ -1,5 +1,5 @@
 {
-  "dataset_version": "1.0.0",
+  "dataset_version": "1.0.6",
   "application": "Kubernetes Manifest Review Assistant",
   "minimum_required_cases": 15,
   "total_cases": 20,
@@ -32,6 +32,30 @@
           "category": "Configuration",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "latest-app",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "latest-app",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "latest-app",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -55,6 +79,30 @@
           "category": "Security",
           "severity": "High",
           "evidence_field_path": "spec.template.spec.containers"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "privileged-app",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "privileged-app",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "privileged-app",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -72,12 +120,28 @@
       "expected_outcome": "SUCCESS",
       "expected_findings": [
         {
-          "issue_id": "K8S-RES-001",
+          "issue_id": "K8S-REL-001",
           "resource_kind": "Deployment",
           "resource_name": "no-requests",
-          "category": "Resource Management",
+          "category": "Reliability",
           "severity": "Medium",
-          "evidence_field_path": "spec.template.spec.containers[0].resources.requests"
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "no-requests",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "no-requests",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -101,6 +165,30 @@
           "category": "Resource Management",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers[0].resources.limits"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "no-limits",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "no-limits",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "no-limits",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -124,6 +212,14 @@
           "category": "Reliability",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "no-readiness",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -147,6 +243,14 @@
           "category": "Reliability",
           "severity": "Low",
           "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "no-liveness",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -193,6 +297,22 @@
           "category": "Security",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers[0].securityContext.allowPrivilegeEscalation"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "escalation-app",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "escalation-app",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
         }
       ],
       "expected_resources": [
@@ -216,6 +336,30 @@
           "category": "Configuration",
           "severity": "High",
           "evidence_field_path": "spec.selector.matchLabels"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "selector-app",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "selector-app",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "selector-app",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -253,6 +397,22 @@
           "category": "Security",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "ambiguous-security",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "ambiguous-security",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
         }
       ],
       "expected_resources": [
@@ -340,6 +500,30 @@
           "category": "Configuration",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "annotation-injection",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "annotation-injection",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "annotation-injection",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
@@ -363,6 +547,30 @@
           "category": "Resource Management",
           "severity": "Medium",
           "evidence_field_path": "spec.template.spec.containers"
+        },
+        {
+          "issue_id": "K8S-REL-001",
+          "resource_kind": "Deployment",
+          "resource_name": "cpu-boundary",
+          "category": "Reliability",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].readinessProbe"
+        },
+        {
+          "issue_id": "K8S-REL-002",
+          "resource_kind": "Deployment",
+          "resource_name": "cpu-boundary",
+          "category": "Reliability",
+          "severity": "Low",
+          "evidence_field_path": "spec.template.spec.containers[0].livenessProbe"
+        },
+        {
+          "issue_id": "K8S-SEC-001",
+          "resource_kind": "Deployment",
+          "resource_name": "cpu-boundary",
+          "category": "Security",
+          "severity": "Medium",
+          "evidence_field_path": "spec.template.spec.containers[0].securityContext.runAsNonRoot"
         }
       ],
       "expected_resources": [
