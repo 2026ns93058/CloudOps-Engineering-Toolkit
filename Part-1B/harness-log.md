@@ -58,3 +58,35 @@ Changes and refinements were made between evaluation runs, followed by re-evalua
 
 
 
+
+
+## Detailed Evaluation Evidence Review (Nov 12, 2026)
+
+The preserved result files were reviewed to make the iteration history more specific. Timestamps below are the UTC start and completion values recorded inside each evaluation result JSON.
+
+| Run | Dataset | Started (UTC) | Completed (UTC) | Semantic score | Passed / failed cases | Execution failures | Outcome |
+|---|---|---|---|---:|---:|---:|---|
+| V1 | 1.0.0 | 2026-11-09 10:36:26 | 2026-11-09 10:50:02 | 60.6863% | 12 / 8 | 2 | FAIL |
+| V2 | 1.0.0 | 2026-11-09 14:42:26 | 2026-11-09 14:46:25 | 62.1569% | 13 / 7 | 1 | FAIL |
+| V3 | 1.0.0 | 2026-11-09 16:13:33 | 2026-11-09 16:21:10 | 73.6275% | 14 / 6 | 0 | FAIL |
+| V4 | 1.0.0 | 2026-11-09 17:19:19 | 2026-11-09 17:26:16 | 78.4314% | 11 / 9 | 0 | FAIL |
+| V5 | 1.0.0 | 2026-11-09 18:10:30 | 2026-11-10 03:01:54 | 72.5490% | 10 / 10 | 0 | FAIL |
+| V6 | 1.0.5 | 2026-11-10 04:42:03 | 2026-11-10 04:46:27 | 97.7124% | 20 / 0 | 0 | PASS |
+| V7 | 1.0.6 | 2026-11-10 05:23:56 | 2026-11-10 05:37:31 | 100.0000% | 20 / 0 | 0 | PASS |
+
+### Failure analysis from preserved results
+
+- V1–V5 recorded semantic failures, primarily unexpected findings (false positives), missed expected findings (false negatives), and severity/evidence mismatches. These are visible in each run's `case_results` and `failure_reasons`.
+- V1 and V2 also recorded execution failures. V1 lists K8S-EVAL-011 and K8S-EVAL-020; V2 lists K8S-EVAL-020.
+- The failed-case lists changed between runs, so a higher aggregate score did not mean every individual case improved monotonically. V5 scored lower than V4.
+- V6 and V7 passed all 20 application-level outcomes with no execution failures. V7 used dataset v1.0.6 and is the accepted final result.
+
+### Commands and evidence paths
+
+The reproducible harness entry point is `.harness/run.sh`. It runs `python -m pytest -v`, then invokes `k8s-review --evaluate --dataset evals/dataset.json --results artifacts/harness-runs/evaluation-<UTC timestamp>.json`. The script uses the default required dataset path.
+
+The detailed result artifacts are preserved at `artifacts/full-evaluation-v1/` through `artifacts/full-evaluation-v7/`. Each `evaluation-results.json` records run timestamps, dataset version, aggregate score, pass/fail counts, failed case IDs, execution failures, and per-case failure reasons.
+
+### Traceability limitation
+
+The artifacts establish the observed failure patterns and the sequence of subsequent passing runs. They do not, by themselves, provide a complete commit-by-commit mapping from each individual failure to a specific prompt or application repair. No such mapping is invented here. The exact repair rationale for each intermediate change remains a documentation gap.
