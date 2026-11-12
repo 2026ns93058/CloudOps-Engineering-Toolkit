@@ -15,7 +15,7 @@ echo "2. Running AI evaluation with dataset v1.0.6"
 mkdir -p artifacts/harness-runs
 
 k8s-review --evaluate \
-  --dataset evals/dataset-v1.0.6.json \
+  --dataset evals/dataset.json \
   --results "$RESULTS"
 
 echo "Evaluation evidence: $RESULTS"
