@@ -51,7 +51,7 @@ The V1.0.0 initial/final-generation JSON files are historical snapshots. The fin
 - Aggregate semantic score: 100.00%
 - Overall status: PASS
 
-The run was generated locally after the latest corrections. Confirm that the JSON result is committed to GitHub alongside this index before final submission.
+The run result JSON is tracked in Git and was pushed to GitHub in commit `2b4e987`, alongside the updated harness log and evidence index.
 
 ## Security Review — Nov 12, 2026
 
